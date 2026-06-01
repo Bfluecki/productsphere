@@ -1,6 +1,8 @@
 import { useState, useEffect } from 'react'
 import './App.css'
 
+const APP_URL = 'https://classifier-studio-production.up.railway.app/'
+
 const NAV_LINKS = [
   { label: 'Lösung', href: '#solution' },
   { label: 'Funktionen', href: '#features' },
@@ -110,9 +112,9 @@ export default function App() {
               </li>
             ))}
             <li>
-              <button className="btn btn--sm btn--primary" onClick={() => scrollTo('#contact')}>
-                Demo anfragen
-              </button>
+              <a className="btn btn--sm btn--primary" href={APP_URL} target="_blank" rel="noopener noreferrer">
+                Plattform öffnen
+              </a>
             </li>
           </ul>
           <button className="nav__burger" onClick={() => setMenuOpen(!menuOpen)} aria-label="Menü">
@@ -137,7 +139,7 @@ export default function App() {
             Standards wie eClass, ETIM oder kundenspezifische Taxonomien.
           </p>
           <div className="hero__ctas">
-            <button className="btn btn--primary btn--lg" onClick={() => scrollTo('#contact')}>Demo anfragen</button>
+            <a className="btn btn--primary btn--lg" href={APP_URL} target="_blank" rel="noopener noreferrer">Plattform starten</a>
             <button className="btn btn--outline btn--lg" onClick={() => scrollTo('#portfolio')}>Leistungsportfolio ansehen</button>
           </div>
           <div className="stats">
@@ -254,7 +256,7 @@ export default function App() {
               Klassifikations- und Datenqualitätsvorgaben entsprechen. ProductSphere kann diese Bestände einmalig als
               Service validieren und konkrete Verbesserungsmassnahmen aufzeigen.
             </p>
-            <button className="btn btn--primary" onClick={() => scrollTo('#contact')}>Datenbestand prüfen lassen</button>
+            <a className="btn btn--primary" href="mailto:info@productsphere.io">Datenbestand prüfen lassen</a>
           </div>
           <ul className="check-list">
             {VALIDATION_SERVICES.map((v) => (
@@ -337,8 +339,8 @@ export default function App() {
             zukünftige Standards vorbereitet.
           </p>
           <div className="cta-buttons">
-            <a className="btn btn--primary btn--lg" href="mailto:info@productsphere.io">Demo anfragen</a>
-            <a className="btn btn--outline-light btn--lg" href="mailto:info@productsphere.io">Validierungsservice besprechen</a>
+            <a className="btn btn--primary btn--lg" href={APP_URL} target="_blank" rel="noopener noreferrer">Plattform starten</a>
+            <a className="btn btn--outline-light btn--lg" href="mailto:info@productsphere.io">Kontakt aufnehmen</a>
           </div>
           <p className="cta-hint">Wir melden uns innerhalb von 24 Stunden.</p>
         </div>
