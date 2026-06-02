@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react'
+import logo from './assets/logo.png'
 import './App.css'
 
 const APP_URL = 'https://classifier-studio-production.up.railway.app/'
@@ -115,8 +116,7 @@ export default function App() {
       <nav className={`nav${scrolled ? ' nav--scrolled' : ''}`}>
         <div className="nav__inner">
           <button className="nav__logo" onClick={() => scrollTo('#hero')}>
-            <span className="logo-dot" />
-            ProductSphere
+            <img src={logo} alt="ProductSphere" className="nav__logo-img" />
           </button>
           <ul className={`nav__links${menuOpen ? ' nav__links--open' : ''}`}>
             {NAV_LINKS.map((l) => (
@@ -377,10 +377,7 @@ export default function App() {
       {/* FOOTER */}
       <footer className="footer">
         <div className="container footer__inner">
-          <span className="nav__logo" style={{ cursor: 'default' }}>
-            <span className="logo-dot" />
-            ProductSphere
-          </span>
+          <img src={logo} alt="ProductSphere" className="nav__logo-img" />
           <p>© 2025 ProductSphere. The Product Intelligence Platform.</p>
         </div>
       </footer>
