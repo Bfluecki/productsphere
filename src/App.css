@@ -87,10 +87,11 @@ ul { list-style: none; }
   flex-shrink: 0;
 }
 .nav__logo-img {
-  height: 36px;
-  width: auto;
+  height: 52px;
+  width: 160px;
   display: block;
-  object-fit: contain;
+  object-fit: cover;
+  object-position: left center;
 }
 .nav__links {
   display: flex;
