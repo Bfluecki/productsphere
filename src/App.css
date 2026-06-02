@@ -460,14 +460,50 @@ ul { list-style: none; }
   background: rgba(255,255,255,0.04);
   border: 1px solid var(--border);
   border-radius: var(--radius);
-  padding: 2.5rem 2rem;
-  text-align: center;
+  padding: 2rem 1.75rem;
+  text-align: left;
   transition: border-color 0.2s, transform 0.2s;
+  display: flex;
+  flex-direction: column;
 }
-.portfolio-card:hover { border-color: var(--teal); transform: translateY(-3px); }
+.portfolio-card:hover { border-color: #00CFFF; transform: translateY(-3px); box-shadow: 0 8px 32px rgba(0,207,255,0.08); }
 .portfolio-card__icon { font-size: 2.5rem; display: block; margin-bottom: 1rem; }
-.portfolio-card h3 { color: #fff; margin-bottom: 0.6rem; }
-.portfolio-card p { color: #94a3b8; font-size: 0.95rem; }
+.portfolio-card h3 { color: #fff; margin-bottom: 0.3rem; font-size: 1.2rem; }
+.portfolio-card__subtitle {
+  color: #00CFFF;
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  margin-bottom: 1rem;
+}
+.portfolio-card__text {
+  color: #94a3b8;
+  font-size: 0.92rem;
+  line-height: 1.65;
+  margin-bottom: 1.25rem;
+  border-bottom: 1px solid rgba(255,255,255,0.07);
+  padding-bottom: 1.25rem;
+}
+.portfolio-card__benefits {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  text-align: left;
+}
+.portfolio-card__benefits li {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.6rem;
+  color: #cbd5e1;
+  font-size: 0.875rem;
+}
+.portfolio-benefit-icon {
+  color: #00CFFF;
+  flex-shrink: 0;
+  margin-top: 1px;
+}
 
 /* ===== PROCESS ===== */
 .process-steps { display: flex; flex-direction: column; gap: 0; max-width: 600px; margin: 0 auto; }

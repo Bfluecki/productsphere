@@ -71,9 +71,45 @@ const VALIDATION_SERVICES = [
 ]
 
 const PORTFOLIO = [
-  { icon: '🖥️', title: 'Webportal', text: 'Nutzung über das browserbasierte Studio für Fachanwender, Stammdatenverantwortliche und Produktmanager.' },
-  { icon: '⚙️', title: 'API & Integration', text: 'Einbindung in bestehende Kundensysteme, Produktanlageprozesse, ERP, SAP, PIM oder E-Commerce.' },
-  { icon: '📊', title: 'Validation as a Service', text: 'Einmalige Analyse und Validierung grosser Produktdatenmengen inklusive Bericht, Qualitätskennzahlen und Verbesserungsvorschlägen.' },
+  {
+    icon: '🖥️',
+    title: 'Webportal',
+    subtitle: 'Für Stammdaten-Teams und Produktmanager',
+    text: 'Das browserbasierte Studio ermöglicht Fachanwendern, einzelne Produkte oder ganze Sortimente direkt im Browser zu klassifizieren, zu prüfen und zu exportieren – ohne technisches Setup.',
+    benefits: [
+      'Sofort einsatzbereit ohne Installation',
+      'Klassifikation per Texteingabe, PDF oder URL',
+      'Ergebnisse mit Konfidenz und Begründung',
+      'Export als JSON, CSV oder PDF',
+      'Ideal für Pilotprojekte und laufenden Betrieb',
+    ],
+  },
+  {
+    icon: '⚙️',
+    title: 'API & Integration',
+    subtitle: 'Für Entwickler und Systemintegratoren',
+    text: 'Die ProductSphere API lässt sich nahtlos in bestehende ERP-, PIM- oder E-Commerce-Systeme einbinden. Klassifikation und Validierung werden direkt im Produktanlageprozess ausgelöst – vollautomatisch.',
+    benefits: [
+      'REST API mit strukturierter JSON-Antwort',
+      'Batch-Verarbeitung grosser Produktmengen',
+      'Kompatibel mit SAP, Salesforce, Akeneo u.v.m.',
+      'Webhook-Support für ereignisgesteuerte Prozesse',
+      'SLA-fähig und skalierbar',
+    ],
+  },
+  {
+    icon: '📊',
+    title: 'Validation as a Service',
+    subtitle: 'Für einmalige Datenqualitäts-Projekte',
+    text: 'Bestehende Produktdatenbestände werden einmalig analysiert, auf Klassifikationsqualität geprüft und mit einem Management-Report inklusive konkreter Handlungsempfehlungen geliefert.',
+    benefits: [
+      'Prüfung ohne eigene IT-Infrastruktur',
+      'Data Quality Score pro Produkt und Kategorie',
+      'GDSN- und DPP-Readiness-Check inklusive',
+      'Korrekturvorschläge und Reklassifikation',
+      'Management Report für Entscheidungsträger',
+    ],
+  },
 ]
 
 const PROCESS_STEPS = [
@@ -309,7 +345,16 @@ export default function App() {
               <div key={p.title} className="portfolio-card">
                 <span className="portfolio-card__icon">{p.icon}</span>
                 <h3>{p.title}</h3>
-                <p>{p.text}</p>
+                <p className="portfolio-card__subtitle">{p.subtitle}</p>
+                <p className="portfolio-card__text">{p.text}</p>
+                <ul className="portfolio-card__benefits">
+                  {p.benefits.map((b) => (
+                    <li key={b}>
+                      <span className="portfolio-benefit-icon">→</span>
+                      {b}
+                    </li>
+                  ))}
+                </ul>
               </div>
             ))}
           </div>
