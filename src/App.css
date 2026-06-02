@@ -460,7 +460,7 @@ ul { list-style: none; }
 .portfolio-card p { color: #94a3b8; font-size: 0.95rem; }
 
 /* ===== PROCESS ===== */
-.process-steps { display: flex; flex-direction: column; gap: 0; max-width: 700px; margin: 0 auto; }
+.process-steps { display: flex; flex-direction: column; gap: 0; max-width: 600px; margin: 0 auto; }
 .process-step { display: flex; gap: 1.5rem; }
 .process-step__left { display: flex; flex-direction: column; align-items: center; }
 .process-step__num {
@@ -483,9 +483,9 @@ ul { list-style: none; }
   background: linear-gradient(to bottom, var(--blue), rgba(37,99,235,0.1));
   margin: 4px 0;
 }
-.process-step__body { padding-bottom: 2rem; padding-top: 0.6rem; }
-.process-step__body h3 { color: #0f172a; margin-bottom: 0.25rem; }
-.process-step__body p { font-size: 0.95rem; }
+.process-step__body { padding-bottom: 2rem; padding-top: 0.75rem; text-align: left; }
+.process-step__body h3 { color: #0f172a; margin-bottom: 0.25rem; font-size: 1.05rem; }
+.process-step__body p { font-size: 0.95rem; color: #475569; }
 
 /* ===== BENEFITS ===== */
 .benefits-grid {
