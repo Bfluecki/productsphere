@@ -13,9 +13,9 @@ const NAV_LINKS = [
 ]
 
 const STATS = [
-  { value: '3', label: 'Standards parallel' },
+  { value: '5', label: 'Standards parallel' },
   { value: '1.7M+', label: 'klassifizierbare Knoten' },
-  { value: '0', label: 'Trainingsläufe nötig' },
+  { value: '8', label: 'Ausgabeformate' },
   { value: '100%', label: 'nachvollziehbar' },
 ]
 
@@ -42,7 +42,20 @@ const STANDARDS = [
   { name: 'GS1 GPC', color: '#2563eb', text: 'Global Product Classification für Stammdaten, GDSN, E-Commerce und Lieferanten-Onboarding.', tag: 'Live' },
   { name: 'MIGEL', color: '#0891b2', text: 'Schweizer Mittel- und Gegenständeliste für Vergütung, Abrechnung und Gesundheitsprozesse.', tag: 'Live' },
   { name: 'FEDAS', color: '#7c3aed', text: 'Warengruppenschlüssel für Sporthandel, Sortimentssteuerung und Reporting.', tag: 'Live' },
-  { name: 'Weitere Standards', color: '#059669', text: 'eClass, ETIM, UNSPSC, NPK oder kundenspezifische Taxonomien können ohne Modelltraining eingebunden werden.', tag: 'Roadmap' },
+  { name: 'ETIM', color: '#0e7490', text: 'Elektrotechnischer Informationsmodell-Standard für technische Produktdaten und Attribute.', tag: 'Live' },
+  { name: 'UNSPSC', color: '#059669', text: 'United Nations Standard Products and Services Code – globaler Standard für Einkauf und Beschaffung.', tag: 'Live' },
+  { name: 'eClass', color: '#92400e', text: 'Internationaler Standard für Produktklassifikation und Stammdaten in Industrie und Handel.', tag: 'Bald' },
+]
+
+const OUTPUT_FORMATS = [
+  { label: 'Klassifikation (JSON)', icon: '{}' },
+  { label: 'Stammblatt (PDF)', icon: '📄' },
+  { label: 'GDSN CH (JSON-LD)', icon: '🌐' },
+  { label: 'BMEcat 2005 (XML)', icon: '🗂️' },
+  { label: 'ETIM xChange (JSON)', icon: '⚡' },
+  { label: 'UNSPSC · Peppol/UBL (XML)', icon: '📦' },
+  { label: 'Kandidaten (CSV)', icon: '📊' },
+  { label: 'SAP MM-Stammdaten', icon: '🔧', soon: true },
 ]
 
 const VALIDATION_SERVICES = [
@@ -229,7 +242,8 @@ export default function App() {
         <div className="container">
           <div className="section__header section__header--light">
             <div className="pill pill--teal">Standards</div>
-            <h2>Drei Standards heute – offen für weitere</h2>
+            <h2>5 Standards heute – offen für weitere</h2>
+            <p className="section__lead">Klassifikation gegen alle aktiven Standards parallel – in einem einzigen Lauf.</p>
           </div>
           <div className="standards-grid">
             {STANDARDS.map((s) => (
@@ -241,6 +255,20 @@ export default function App() {
                 <p>{s.text}</p>
               </div>
             ))}
+          </div>
+
+          {/* OUTPUT FORMATS */}
+          <div className="outputs-block">
+            <p className="outputs-title">Ausgabeformate</p>
+            <div className="outputs-grid">
+              {OUTPUT_FORMATS.map((f) => (
+                <div key={f.label} className={`output-chip${f.soon ? ' output-chip--soon' : ''}`}>
+                  <span>{f.icon}</span>
+                  {f.label}
+                  {f.soon && <span className="chip-soon">Bald</span>}
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </section>

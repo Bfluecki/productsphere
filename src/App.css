@@ -376,6 +376,48 @@ ul { list-style: none; }
 .tag--green { background: rgba(5,150,105,0.2); color: #34d399; }
 .tag--amber { background: rgba(217,119,6,0.2); color: #fbbf24; }
 
+/* ===== OUTPUT FORMATS ===== */
+.outputs-block {
+  margin-top: 3rem;
+  border-top: 1px solid rgba(255,255,255,0.08);
+  padding-top: 2.5rem;
+}
+.outputs-title {
+  color: #94a3b8;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-bottom: 1rem;
+}
+.outputs-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+}
+.output-chip {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.45rem 1rem;
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: 100px;
+  color: #e2e8f0;
+  font-size: 0.85rem;
+  font-weight: 500;
+}
+.output-chip--soon { opacity: 0.5; }
+.chip-soon {
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  color: #fbbf24;
+  background: rgba(217,119,6,0.2);
+  padding: 0.1rem 0.4rem;
+  border-radius: 100px;
+}
+
 /* ===== VALIDATION ===== */
 .validation-layout {
   display: grid;
