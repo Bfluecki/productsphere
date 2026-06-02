@@ -8,9 +8,7 @@ const NAV_LINKS = [
   { label: 'Lösung', href: '#solution' },
   { label: 'Funktionen', href: '#features' },
   { label: 'Standards', href: '#standards' },
-  { label: 'Webportal', href: '#portfolio-webportal' },
-  { label: 'API', href: '#portfolio-api' },
-  { label: 'Validierung', href: '#portfolio-validation' },
+  { label: 'Sphere Services', href: '#portfolio' },
   { label: 'Kontakt', href: '#contact' },
 ]
 
@@ -118,7 +116,7 @@ const PORTFOLIO = [
 
 const PROCESS_STEPS = [
   { num: '01', title: 'Produktdaten bereitstellen', text: 'Text, Datei, Bild, URL oder Datenexport.' },
-  { num: '02', title: 'KI analysiert und normalisiert', text: 'Die Plattform extrahiert relevante Merkmale und Attribute.' },
+  { num: '02', title: 'ProductSphere analysiert und normalisiert', text: 'Die Plattform extrahiert relevante Merkmale und Attribute.' },
   { num: '03', title: 'Standards werden abgeglichen', text: 'Semantische Suche findet passende Katalogknoten.' },
   { num: '04', title: 'Ergebnis wird bewertet', text: 'Top-Treffer, Kandidatenliste, Konfidenz und Begründung.' },
   { num: '05', title: 'Daten werden exportiert', text: 'JSON, CSV, PDF, GDSN-Profil oder API-Rückgabe.' },
@@ -237,7 +235,7 @@ export default function App() {
             <div className="pill pill--blue">Die Lösung</div>
             <h2>Eine Plattform für Klassifikation, Validierung und Produktintelligenz</h2>
             <p className="section__lead">
-              ProductSphere kombiniert semantische Suche, Retrieval-Augmented Generation, KI-gestützte Bewertung und
+              ProductSphere kombiniert semantische Suche, Retrieval-Augmented Generation, intelligente Bewertung und
               transparente Validierung. Die Plattform analysiert Produktinformationen, schlägt passende Klassifikationen
               vor, prüft bestehende Daten und macht jeden Entscheidungsschritt nachvollziehbar.
             </p>
