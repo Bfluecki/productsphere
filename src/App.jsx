@@ -8,8 +8,9 @@ const NAV_LINKS = [
   { label: 'Lösung', href: '#solution' },
   { label: 'Funktionen', href: '#features' },
   { label: 'Standards', href: '#standards' },
-  { label: 'Validierung', href: '#validation' },
-  { label: 'Portfolio', href: '#portfolio' },
+  { label: 'Webportal', href: '#portfolio-webportal' },
+  { label: 'API', href: '#portfolio-api' },
+  { label: 'Validierung', href: '#portfolio-validation' },
   { label: 'Kontakt', href: '#contact' },
 ]
 
@@ -72,6 +73,7 @@ const VALIDATION_SERVICES = [
 
 const PORTFOLIO = [
   {
+    id: 'portfolio-webportal',
     icon: '🖥️',
     title: 'Webportal',
     subtitle: 'Für Stammdaten-Teams und Produktmanager',
@@ -85,6 +87,7 @@ const PORTFOLIO = [
     ],
   },
   {
+    id: 'portfolio-api',
     icon: '⚙️',
     title: 'API & Integration',
     subtitle: 'Für Entwickler und Systemintegratoren',
@@ -98,6 +101,7 @@ const PORTFOLIO = [
     ],
   },
   {
+    id: 'portfolio-validation',
     icon: '📊',
     title: 'Validation as a Service',
     subtitle: 'Für einmalige Datenqualitäts-Projekte',
@@ -342,7 +346,7 @@ export default function App() {
           </div>
           <div className="portfolio-grid">
             {PORTFOLIO.map((p) => (
-              <div key={p.title} className="portfolio-card">
+              <div key={p.title} id={p.id} className="portfolio-card">
                 <span className="portfolio-card__icon">{p.icon}</span>
                 <h3>{p.title}</h3>
                 <p className="portfolio-card__subtitle">{p.subtitle}</p>
