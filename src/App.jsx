@@ -5,8 +5,8 @@ import './App.css'
 const APP_URL = 'https://classifier-studio-production.up.railway.app/'
 
 const NAV_LINKS = [
-  { label: 'Lösung', href: '#solution' },
-  { label: 'Funktionen', href: '#features' },
+  { label: 'Idee', href: '#idea' },
+  { label: 'Studios', href: '#studios' },
   { label: 'Standards', href: '#standards' },
   { label: 'Sphere Services', href: '#portfolio' },
   { label: 'Kontakt', href: '#contact' },
@@ -14,59 +14,154 @@ const NAV_LINKS = [
 
 const STATS = [
   { value: '5', label: 'Standards parallel' },
-  { value: '1.7M+', label: 'klassifizierbare Knoten' },
-  { value: '8', label: 'Ausgabeformate' },
+  { value: '4+', label: 'Zielformate' },
+  { value: '0', label: 'Trainingsläufe nötig' },
   { value: '100%', label: 'nachvollziehbar' },
 ]
 
-const PAIN_POINTS = [
-  'Manuelle Klassifikation ist teuer und langsam',
-  'Bestehende Klassifikationen sind oft nicht überprüft',
-  'Datenqualität ist schwer messbar',
-  'Standards ändern sich laufend',
-  'GDSN und DPP erhöhen die Anforderungen zusätzlich',
-]
-
-const FEATURES = [
-  { icon: '📄', title: 'Versteht jedes Format', text: 'Text, PDF, Bilder und Produkt-URLs werden automatisch analysiert.' },
-  { icon: '⚡', title: 'Mehrere Standards parallel', text: 'Ein Produkt kann gleichzeitig mehreren Standards zugeordnet werden.' },
-  { icon: '🔍', title: 'Gläserne Pipeline', text: 'Jeder Schritt wird sichtbar dokumentiert: Aufnahme, Normalisierung, Retrieval, Bewertung und Ergebnis.' },
-  { icon: '✅', title: 'Konfidenz & Review', text: 'Unsichere Fälle werden markiert und zur Prüfung weitergeleitet.' },
-  { icon: '🕓', title: 'Versionierung', text: 'Produkte, Quellen, Läufe und Ergebnisse bleiben historisiert und reproduzierbar.' },
-  { icon: '🌐', title: 'GDSN Readiness', text: 'Produktdaten werden auf Vollständigkeit und GDSN-Tauglichkeit geprüft.' },
-  { icon: '🪪', title: 'DPP Readiness', text: 'Vorbereitung auf den Digital Product Passport durch strukturierte Produktinformationen.' },
-  { icon: '🔗', title: 'API Integration', text: 'Anbindung an SAP, ERP, PIM, E-Commerce oder individuelle Systeme.' },
+const STUDIOS = [
+  {
+    icon: '🎛️',
+    name: 'Product Studio',
+    role: 'Das Cockpit & der Orchestrator',
+    text: 'Produkt anlegen, Quellen verwalten, den Produkt-Agenten fahren lassen und die ganze Pipeline überwachen. Versionsliste mit Replay, offene Rückfragen, Lebenslauf.',
+  },
+  {
+    icon: '🔬',
+    name: 'Classifier Studio',
+    role: 'Klassifikation im Detail',
+    text: 'Standards & Versionen wählen, die gläserne Tool-Trace live verfolgen, Top-3-Kandidaten prüfen und jeden Lauf aus der History exakt wieder abspielen.',
+  },
+  {
+    icon: '✏️',
+    name: 'Refinement Studio',
+    role: 'Validierung & Anreicherung',
+    text: 'Gegen das aufgelöste Zielprofil validieren und aus den Quellen anreichern — mit Provenienz je Feld (geprüft/befüllt/abgeleitet/fehlend) und Validierungs-Report.',
+  },
 ]
 
 const STANDARDS = [
-  { name: 'GS1 GPC', color: '#2563eb', text: 'Global Product Classification für Stammdaten, GDSN, E-Commerce und Lieferanten-Onboarding.', tag: 'Live' },
-  { name: 'MIGEL', color: '#0891b2', text: 'Schweizer Mittel- und Gegenständeliste für Vergütung, Abrechnung und Gesundheitsprozesse.', tag: 'Live' },
-  { name: 'FEDAS', color: '#7c3aed', text: 'Warengruppenschlüssel für Sporthandel, Sortimentssteuerung und Reporting.', tag: 'Live' },
-  { name: 'ETIM', color: '#0e7490', text: 'Elektrotechnischer Informationsmodell-Standard für technische Produktdaten und Attribute.', tag: 'Live' },
-  { name: 'UNSPSC', color: '#059669', text: 'United Nations Standard Products and Services Code – globaler Standard für Einkauf und Beschaffung.', tag: 'Live' },
-  { name: 'eClass', color: '#92400e', text: 'Internationaler Standard für Produktklassifikation und Stammdaten in Industrie und Handel.', tag: 'Bald' },
+  {
+    name: 'GS1 GPC',
+    color: '#00CFFF',
+    text: 'Global Product Classification — Weltweiter GS1-Standard für Stammdaten, GDSN, E-Commerce und Lieferanten-Onboarding.',
+    process: 'Basis für GDSN-Datenaustausch, E-Commerce und PIM/ERP. Universell für jedes Produkt.',
+    tag: 'Live',
+  },
+  {
+    name: 'MIGEL',
+    color: '#CC00EE',
+    text: 'Mittel- und Gegenständeliste (CH) — Schweizer Positionsliste für Vergütung durch die Grundversicherung.',
+    process: 'Steuert Abrechnung & Rückerstattung: Apotheken, Spitäler, Sanitätshäuser, Versicherer.',
+    tag: 'Live',
+  },
+  {
+    name: 'FEDAS',
+    color: '#FF8C00',
+    text: 'Warengruppenschlüssel Sport — Branchenstandard des Sportfachhandels zur einheitlichen Warengruppierung.',
+    process: 'Sortiments- und Abverkaufssteuerung im Sporthandel: Warenwirtschaft, Beschaffung, Reporting.',
+    tag: 'Live',
+  },
+  {
+    name: 'ETIM',
+    color: '#00CFFF',
+    text: 'Technische Merkmale — Internationaler Standard für technische Produkte (Elektro, Bau, Sanitär) mit Klassen und Merkmalen.',
+    process: 'Treibt B2B-Kataloge (BMEcat/ETIM xChange) und technischen Großhandel — merkmalsbasierte Suche.',
+    tag: 'Live',
+  },
+  {
+    name: 'UNSPSC',
+    color: '#CC00EE',
+    text: 'UN Standard Products & Services — Weltweite UN-Klassifikation mit hierarchischem Code.',
+    process: 'Spend-Analyse, Beschaffung und Peppol/UBL-Belege — Brücke zwischen Einkauf und Buchhaltung.',
+    tag: 'Live',
+  },
+  {
+    name: 'eClass',
+    color: '#64748b',
+    text: 'Internationaler Standard für Produktklassifikation und Stammdaten in Industrie und Handel.',
+    process: 'Anbindung ohne Modelltraining — Katalog einlesen, einbetten, produktiv.',
+    tag: 'Bald',
+  },
+]
+
+const PIPELINE_STEPS = [
+  {
+    num: '01',
+    title: 'Aufnahme',
+    text: 'Text, PDF, Bild, CSV/XLSX/JSON oder URL einlesen. Vision/OCR und Dok-Extraktor gewinnen Titel, Marke, Attribute und Evidenz.',
+  },
+  {
+    num: '02',
+    title: 'Klassifikation',
+    text: 'Gegen alle zutreffenden Standards: Normalisieren → Embedding → Retrieval → Scope-Richter → Rerank → begründeter Top-Treffer.',
+  },
+  {
+    num: '03',
+    title: 'Refinement',
+    text: 'Zielprofil auflösen, Pflicht-/Optionalfelder aus den Quellen füllen, Lücken benennen — mit Provenienz und Validierungs-Report.',
+  },
+  {
+    num: '04',
+    title: 'Integration',
+    text: 'Je Zielformat ein lieferfertiges Dokument aus dem angereicherten Profil rendern und zum Übergabe-Paket bündeln.',
+  },
+]
+
+const AGENT_FEATURES = [
+  { icon: '🤖', title: 'Orchestriert die Sub-Agenten', text: 'Treibt Klassifikation, Refinement und Integration headless bis zum Ziel — hält nur an, wo eine menschliche Entscheidung nötig ist.' },
+  { icon: '💬', title: 'Stellt die richtigen Fragen', text: 'Alle offenen Entscheidungen erscheinen zentral als Rückfrage: erst der Weg (akzeptieren / Alternative / manuell), dann die konkrete Aktion.' },
+  { icon: '⚙️', title: 'Automatisierungsgrad wählbar', text: 'Off (manuell), Assisted (autonom bis zum HITL-Gate) oder Auto. Unsichere Fälle landen in der Inbox statt still falsch zu laufen.' },
+  { icon: '🔍', title: 'Treibt die Daten-Beschaffung', text: 'Fehlt etwas, beschafft der Agent es per Websuche oder fordert Quellen an, nimmt die Ergänzung auf und läuft automatisch weiter.' },
 ]
 
 const OUTPUT_FORMATS = [
-  { label: 'Klassifikation (JSON)', icon: '{}' },
-  { label: 'Stammblatt (PDF)', icon: '📄' },
-  { label: 'GDSN CH (JSON-LD)', icon: '🌐' },
-  { label: 'BMEcat 2005 (XML)', icon: '🗂️' },
-  { label: 'ETIM xChange (JSON)', icon: '⚡' },
-  { label: 'UNSPSC · Peppol/UBL (XML)', icon: '📦' },
-  { label: 'Kandidaten (CSV)', icon: '📊' },
-  { label: 'SAP MM-Stammdaten', icon: '🔧', soon: true },
+  { label: 'GDSN CH (JSON-LD)', icon: '🌐', text: 'GS1-Datenpool-Profil, Zielmarkt CH-756 — für den Stammdatenaustausch.' },
+  { label: 'BMEcat 2005 (XML)', icon: '🗂️', text: 'B2B-Katalog mit Klassifikations-Referenz für technischen Grosshandel.' },
+  { label: 'UNSPSC · Peppol/UBL', icon: '📦', text: 'Klassifizierter Beleg-Baustein für elektronische Beschaffung und Rechnungsstellung.' },
+  { label: 'SAP S/4HANA Materialstamm', icon: '🔧', text: 'Materialstamm-konforme Ausgabe für den direkten ERP-Import.', soon: true },
+  { label: 'Stammblatt (PDF)', icon: '📄', text: 'Druckfertiges Klassifizierungs-Stammblatt mit Produktbildern und Texten.' },
+  { label: 'Klassifikation (JSON)', icon: '{}', text: 'Top-Treffer plus begründete Kandidatenliste — maschinenverarbeitbar.' },
+  { label: 'ETIM xChange (JSON)', icon: '⚡', text: 'Technisches Austauschformat für ETIM-basierte B2B-Kataloge.' },
+  { label: 'Kandidaten (CSV)', icon: '📊', text: 'Tabellarischer Export für Tabellenkalkulation und Sichtprüfung.' },
 ]
 
-const VALIDATION_SERVICES = [
-  'Prüfung bestehender Klassifikationen',
-  'Erkennung falscher oder veralteter Zuordnungen',
-  'Analyse fehlender Pflichtattribute',
-  'Data Quality Score',
-  'GDSN Readiness Check',
-  'DPP Readiness Check',
-  'Korrekturvorschläge und Reklassifikation',
-  'Management Report mit Handlungsempfehlungen',
+const DPP_FEATURES = [
+  { icon: '🆔', title: 'Identität & Klassifikation', text: 'GTIN/SKU plus GPC/UNSPSC/ETIM — die eindeutige Produktidentität und Kategorie, auf der jeder Pass aufsetzt.' },
+  { icon: '📋', title: 'Datenmodell als Zielprofil', text: 'Der Zielprofil-Mechanismus bildet ein DPP-Datenmodell je Produktgruppe ab — dieselbe Mechanik wie beim GS1 GDM.' },
+  { icon: '🔗', title: 'Herkunftsnachweis je Feld', text: 'Jeder Wert trägt Status, Quellverweis und Konfidenz — die Nachweisbarkeit, die ein Produktpass regulatorisch verlangt.' },
+  { icon: '🕓', title: 'Versioniert & auditierbar', text: 'Jeder Durchlauf ist eine eingefrorene, wieder-abspielbare Version — Grundlage für die Lebenszyklus-Nachvollziehbarkeit.' },
+]
+
+const BEFORE_AFTER = [
+  { before: 'Fachkraft durchsucht manuell tausendseitige Kataloge', after: 'Vorschlag in Sekunden, Fachkraft prüft nur noch' },
+  { before: 'Pflichtfelder je Zielformat von Hand zusammengesucht', after: 'Zielprofil löst sich auf, Felder werden belegt befüllt' },
+  { before: 'Jeder Standard & jedes Zielsystem ein eigener Prozess', after: '5 Standards und mehrere Zielformate in einem Lauf' },
+  { before: 'Entscheidungen bleiben undokumentiert im Kopf', after: 'Jeder Durchlauf versioniert und exakt wieder abspielbar' },
+  { before: 'Neuer Katalog = Projekt über Monate', after: 'Neuer Katalog = einlesen, einbetten, fertig' },
+]
+
+const IMPACT_STATS = [
+  { value: 'Minuten → Sekunden', label: 'Durchlaufzeit pro Produkt' },
+  { value: 'Linear skalierbar', label: 'mehr Volumen ohne mehr Personal' },
+  { value: 'Audit-ready', label: 'lückenlose Nachvollziehbarkeit' },
+]
+
+const ACCESS = [
+  {
+    icon: '🖥️',
+    title: 'Studio (Desktop)',
+    role: 'Das Kontrollzentrum',
+    text: 'Drei-Spalten-Layout: Input · Agentenkommunikation · Klassifikation/Output. Versionierte History mit Replay, alle Zielformate und die Test Bench mit Analytics & LLM-Log.',
+    tag: 'Live',
+  },
+  {
+    icon: '📱',
+    title: 'Mobile (PWA)',
+    role: 'Kamera-first, für unterwegs & Messe',
+    text: 'Produkt oder Etikett fotografieren → sofort klassifizieren. Einspaltig, installierbar (Home-Screen, Vollbild). Vollständigkeitsprüfung mit Foto-Nachfrage bis das Profil komplett ist.',
+    tag: 'Bald',
+  },
 ]
 
 const PORTFOLIO = [
@@ -75,12 +170,12 @@ const PORTFOLIO = [
     icon: '🖥️',
     title: 'Webportal',
     subtitle: 'Für Stammdaten-Teams und Produktmanager',
-    text: 'Das browserbasierte Studio ermöglicht Fachanwendern, einzelne Produkte oder ganze Sortimente direkt im Browser zu klassifizieren, zu prüfen und zu exportieren – ohne technisches Setup.',
+    text: 'Das browserbasierte Studio ermöglicht Fachanwendern, einzelne Produkte oder ganze Sortimente direkt im Browser zu klassifizieren, anreichern und exportieren — ohne technisches Setup.',
     benefits: [
       'Sofort einsatzbereit ohne Installation',
       'Klassifikation per Texteingabe, PDF oder URL',
       'Ergebnisse mit Konfidenz und Begründung',
-      'Export als JSON, CSV oder PDF',
+      'Export als JSON, CSV, PDF oder GDSN',
       'Ideal für Pilotprojekte und laufenden Betrieb',
     ],
   },
@@ -89,7 +184,7 @@ const PORTFOLIO = [
     icon: '⚙️',
     title: 'API & Integration',
     subtitle: 'Für Entwickler und Systemintegratoren',
-    text: 'Die ProductSphere API lässt sich nahtlos in bestehende ERP-, PIM- oder E-Commerce-Systeme einbinden. Klassifikation und Validierung werden direkt im Produktanlageprozess ausgelöst – vollautomatisch.',
+    text: 'Die ProductSphere API lässt sich nahtlos in bestehende ERP-, PIM- oder E-Commerce-Systeme einbinden. Klassifikation und Validierung werden direkt im Produktanlageprozess ausgelöst — vollautomatisch.',
     benefits: [
       'REST API mit strukturierter JSON-Antwort',
       'Batch-Verarbeitung grosser Produktmengen',
@@ -112,25 +207,6 @@ const PORTFOLIO = [
       'Management Report für Entscheidungsträger',
     ],
   },
-]
-
-const PROCESS_STEPS = [
-  { num: '01', title: 'Produktdaten bereitstellen', text: 'Text, Datei, Bild, URL oder Datenexport.' },
-  { num: '02', title: 'ProductSphere analysiert und normalisiert', text: 'Die Plattform extrahiert relevante Merkmale und Attribute.' },
-  { num: '03', title: 'Standards werden abgeglichen', text: 'Semantische Suche findet passende Katalogknoten.' },
-  { num: '04', title: 'Ergebnis wird bewertet', text: 'Top-Treffer, Kandidatenliste, Konfidenz und Begründung.' },
-  { num: '05', title: 'Daten werden exportiert', text: 'JSON, CSV, PDF, GDSN-Profil oder API-Rückgabe.' },
-]
-
-const BENEFITS = [
-  'Schnellere Klassifikation',
-  'Weniger manuelle Recherche',
-  'Höhere Datenqualität',
-  'Nachvollziehbare Entscheidungen',
-  'Auditierbare Ergebnisse',
-  'Bessere Vorbereitung auf GDSN und DPP',
-  'Skalierbar für grosse Datenmengen',
-  'Offen für neue Standards',
 ]
 
 export default function App() {
@@ -178,20 +254,21 @@ export default function App() {
       <section id="hero" className="hero">
         <div className="hero__bg" />
         <div className="container hero__content">
-          <div className="hero__badge">Product Intelligence Platform</div>
+          <div className="hero__badge">Product Intelligence Suite</div>
           <h1 className="hero__title">
             Product<span className="accent">Sphere</span>
           </h1>
-          <p className="hero__sub">The Product Intelligence Platform</p>
+          <p className="hero__sub">Vom Rohprodukt zum lieferfertigen Datensatz</p>
           <p className="hero__text">
-            Vom Produktdatenblatt zur normgerechten Klassifikation – in Sekunden, nachvollziehbar und mehrsprachig.
-            ProductSphere liest Texte, PDFs, Bilder und Produkt-URLs, versteht den Inhalt und ordnet Produkte parallel
-            mehreren internationalen Klassifikationsstandards zu – darunter GS1 GPC, MIGEL, FEDAS und künftig weitere
-            Standards wie eClass, ETIM oder kundenspezifische Taxonomien.
+            Klassifiziert, angereichert, integriert. ProductSphere liest Texte, PDFs, Bilder, strukturierte Dateien und
+            Produkt-URLs — und führt jedes Produkt durch eine durchgängige Pipeline: Klassifikation gegen mehrere
+            internationale Standards, zielgetriebene Anreicherung und Integration in lieferfertige Zielformate.
+            Ein orchestrierender Produkt-Agent treibt den Ablauf — jeder Schritt sichtbar, jede Entscheidung begründet,
+            jeder Durchlauf versioniert.
           </p>
           <div className="hero__ctas">
             <a className="btn btn--primary btn--lg" href={APP_URL} target="_blank" rel="noopener noreferrer">Plattform starten</a>
-            <button className="btn btn--outline btn--lg" onClick={() => scrollTo('#portfolio')}>Leistungsportfolio ansehen</button>
+            <button className="btn btn--outline btn--lg" onClick={() => scrollTo('#portfolio')}>Sphere Services ansehen</button>
           </div>
           <div className="stats">
             {STATS.map((s) => (
@@ -205,70 +282,55 @@ export default function App() {
         <div className="hero__scroll-hint"><span /></div>
       </section>
 
-      {/* PROBLEM */}
-      <section id="problem" className="section section--light">
+      {/* DIE IDEE */}
+      <section id="idea" className="section section--light">
         <div className="container">
           <div className="section__header">
-            <div className="pill pill--red">Herausforderung</div>
-            <h2>Produktdaten werden immer komplexer</h2>
+            <div className="pill pill--violet">Die Idee</div>
+            <h2>Klassifizieren ist erst der Anfang</h2>
             <p className="section__lead">
-              Unternehmen verfügen über grosse Mengen an Produktdaten. Diese Daten sind oft unvollständig, uneinheitlich
-              oder nicht korrekt klassifiziert. Gleichzeitig steigen die Anforderungen an Standards, Stammdatenaustausch,
-              GDSN, Compliance und digitale Produktpässe.
+              Produktdaten normgerecht aufzubereiten ist heute teure Handarbeit: Fachleute durchsuchen tausendseitige Kataloge,
+              raten fehlende Pflichtfelder zusammen und treffen Entscheidungen, die selten dokumentiert werden. Das Wissen steckt
+              in Köpfen, nicht im System.
             </p>
           </div>
-          <ul className="pain-list">
-            {PAIN_POINTS.map((p) => (
-              <li key={p} className="pain-item">
-                <span className="pain-icon">✗</span>
-                {p}
-              </li>
-            ))}
-          </ul>
+          <div className="idea-grid">
+            <div className="idea-card">
+              <span className="idea-card__icon">🎯</span>
+              <h3>Präzise statt Stichwort</h3>
+              <p>Semantisches Verständnis erkennt „Medikamentenbecher 30 ml graduiert" auch dann, wenn der Katalog von „Dosierhilfen" spricht.</p>
+            </div>
+            <div className="idea-card">
+              <span className="idea-card__icon">⚖️</span>
+              <h3>Mit Augenmaß</h3>
+              <p>Ein vorgeschalteter Richter prüft pro Standard, ob er überhaupt zutrifft — ein Sportschuh wird nicht in einen Medizinkatalog gepresst.</p>
+            </div>
+            <div className="idea-card">
+              <span className="idea-card__icon">🔎</span>
+              <h3>Auditierbar</h3>
+              <p>Jeder Pipeline-Durchlauf wird mit Quellen, Kommunikation und Ergebnis als Version gespeichert und lässt sich exakt wieder ansehen.</p>
+            </div>
+          </div>
         </div>
       </section>
 
-      {/* SOLUTION */}
-      <section id="solution" className="section section--dark">
+      {/* DREI STUDIOS */}
+      <section id="studios" className="section section--dark">
         <div className="container">
           <div className="section__header section__header--light">
-            <div className="pill pill--blue">Die Lösung</div>
-            <h2>Eine Plattform für Klassifikation, Validierung und Produktintelligenz</h2>
+            <div className="pill pill--teal">Eine Suite, drei Studios</div>
+            <h2>Jede Aufgabe hat ihren Ort — über einem gemeinsamen Datenbestand</h2>
             <p className="section__lead">
-              ProductSphere kombiniert semantische Suche, Retrieval-Augmented Generation, intelligente Bewertung und
-              transparente Validierung. Die Plattform analysiert Produktinformationen, schlägt passende Klassifikationen
-              vor, prüft bestehende Daten und macht jeden Entscheidungsschritt nachvollziehbar.
+              Das Produkt ist das Rückgrat. Drei spezialisierte Oberflächen teilen sich denselben Backend-Kern: Was im einen Studio passiert, ist im anderen sofort sichtbar.
             </p>
           </div>
-          <div className="modules">
-            {[
-              { num: '01', title: 'Classification Engine', text: 'Automatische Zuordnung zu Standards wie GS1 GPC, MIGEL und FEDAS.' },
-              { num: '02', title: 'Data Validation Services', text: 'Einmalige oder wiederkehrende Prüfung grosser Produktdatenbestände auf Qualität, Vollständigkeit und Standardkonformität.' },
-              { num: '03', title: 'Product Data Integration', text: 'Integration in Kundensysteme über API, Batch-Verarbeitung oder Exportformate wie JSON, CSV, PDF und GDSN-Profile.' },
-            ].map((m) => (
-              <div key={m.num} className="module-card">
-                <span className="module-card__num">{m.num}</span>
-                <h3>{m.title}</h3>
-                <p>{m.text}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* FEATURES */}
-      <section id="features" className="section section--light">
-        <div className="container">
-          <div className="section__header">
-            <div className="pill pill--violet">Funktionen</div>
-            <h2>Was die Plattform leistet</h2>
-          </div>
-          <div className="cards-grid">
-            {FEATURES.map((f) => (
-              <div key={f.title} className="feature-card">
-                <span className="feature-card__icon">{f.icon}</span>
-                <h3>{f.title}</h3>
-                <p>{f.text}</p>
+          <div className="studios-grid">
+            {STUDIOS.map((s) => (
+              <div key={s.name} className="studio-card">
+                <span className="studio-card__icon">{s.icon}</span>
+                <h3>{s.name}</h3>
+                <p className="studio-card__role">{s.role}</p>
+                <p>{s.text}</p>
               </div>
             ))}
           </div>
@@ -280,8 +342,10 @@ export default function App() {
         <div className="container">
           <div className="section__header section__header--light">
             <div className="pill pill--teal">Standards</div>
-            <h2>5 Standards heute – offen für weitere</h2>
-            <p className="section__lead">Klassifikation gegen alle aktiven Standards parallel – in einem einzigen Lauf.</p>
+            <h2>Fünf Standards — parallel, in einem Lauf</h2>
+            <p className="section__lead">
+              Dasselbe Produkt wird je nach Prozess unterschiedlich eingeordnet. ProductSphere bedient alle relevanten Standards parallel — kein separates Tool, kein Medienbruch.
+            </p>
           </div>
           <div className="standards-grid">
             {STANDARDS.map((s) => (
@@ -291,55 +355,213 @@ export default function App() {
                   <span className={`tag tag--${s.tag === 'Live' ? 'green' : 'amber'}`}>{s.tag}</span>
                 </div>
                 <p>{s.text}</p>
+                <p className="standard-card__process">{s.process}</p>
               </div>
             ))}
           </div>
+          <div className="standards-why">
+            <h3>Warum mehrere Standards gleichzeitig?</h3>
+            <p>Ein einziges Medizinprodukt ist gleichzeitig ein GPC-Brick (Stammdaten), eine MIGEL-Position (Vergütung) und — bei einer Sportbandage — ein FEDAS-Schlüssel (Handel). Statt drei Silos zu pflegen, liefert ProductSphere alle relevanten Einordnungen aus einer Produktbeschreibung — konsistent, gleichzeitig und nachvollziehbar.</p>
+          </div>
+        </div>
+      </section>
 
-          {/* OUTPUT FORMATS */}
-          <div className="outputs-block">
-            <p className="outputs-title">Ausgabeformate</p>
-            <div className="outputs-grid">
-              {OUTPUT_FORMATS.map((f) => (
-                <div key={f.label} className={`output-chip${f.soon ? ' output-chip--soon' : ''}`}>
-                  <span>{f.icon}</span>
-                  {f.label}
-                  {f.soon && <span className="chip-soon">Bald</span>}
+      {/* PIPELINE */}
+      <section id="pipeline" className="section section--light">
+        <div className="container">
+          <div className="section__header">
+            <div className="pill pill--violet">So funktioniert es</div>
+            <h2>Eine durchgängige Pipeline — von der Quelle bis zum Zielsystem</h2>
+          </div>
+          <div className="process-steps">
+            {PIPELINE_STEPS.map((s, i) => (
+              <div key={s.num} className="process-step">
+                <div className="process-step__left">
+                  <div className="process-step__num">{s.num}</div>
+                  {i < PIPELINE_STEPS.length - 1 && <div className="process-step__line" />}
                 </div>
-              ))}
+                <div className="process-step__body">
+                  <h3>{s.title}</h3>
+                  <p>{s.text}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+          <div className="pipeline-note">
+            <span className="pipeline-note__icon">🔍</span>
+            <div>
+              <strong>Gläsern in jedem Schritt</strong>
+              <p>Jeder Teilschritt — Normalisierung, Embedding, Retrieval, Richter, Rerank, Anreicherung, Integration — wird live als Tool-Trace angezeigt. Keine Blackbox: Sie sehen genau, warum ein Treffer gewählt und ein Feld befüllt wurde.</p>
             </div>
           </div>
         </div>
       </section>
 
-      {/* VALIDATION */}
-      <section id="validation" className="section section--light">
-        <div className="container validation-layout">
-          <div className="validation-text">
-            <div className="pill pill--red">Validierungsservice</div>
-            <h2>Bestehende Produktdaten prüfen und verbessern</h2>
-            <p>
-              Viele Unternehmen haben bereits grosse Produktdatenbestände, wissen aber nicht, ob diese den geforderten
-              Klassifikations- und Datenqualitätsvorgaben entsprechen. ProductSphere kann diese Bestände einmalig als
-              Service validieren und konkrete Verbesserungsmassnahmen aufzeigen.
+      {/* PRODUKT-AGENT */}
+      <section id="agent" className="section section--dark">
+        <div className="container">
+          <div className="section__header section__header--light">
+            <div className="pill pill--blue">Der Produkt-Agent</div>
+            <h2>Ein dialogfähiger Orchestrator statt stummer Stapelverarbeitung</h2>
+            <p className="section__lead">
+              ProductSphere ist kein stummer Klassifikator, sondern ein steuernder Agent: Er liest die Quellen, leitet ab, was er kann, und meldet aktiv zurück, was fehlt.
             </p>
-            <a className="btn btn--primary" href="mailto:info@productsphere.io">Datenbestand prüfen lassen</a>
           </div>
-          <ul className="check-list">
-            {VALIDATION_SERVICES.map((v) => (
-              <li key={v}>
-                <span className="check-icon">✓</span>
-                {v}
-              </li>
+          <div className="cards-grid">
+            {AGENT_FEATURES.map((f) => (
+              <div key={f.title} className="feature-card feature-card--dark">
+                <span className="feature-card__icon">{f.icon}</span>
+                <h3>{f.title}</h3>
+                <p>{f.text}</p>
+              </div>
             ))}
-          </ul>
+          </div>
         </div>
       </section>
 
-      {/* PORTFOLIO */}
+      {/* OUTPUT FORMATE */}
+      <section id="outputs" className="section section--light">
+        <div className="container">
+          <div className="section__header">
+            <div className="pill pill--violet">Ergebnisse</div>
+            <h2>Lieferfertige Formate — kein Nacharbeiten</h2>
+            <p className="section__lead">
+              ProductSphere produziert die Artefakte, die nachgelagerte Systeme erwarten — vom GS1-Datenmodell bis zum SAP-Materialstamm.
+            </p>
+          </div>
+          <div className="output-cards">
+            {OUTPUT_FORMATS.map((f) => (
+              <div key={f.label} className={`output-card${f.soon ? ' output-card--soon' : ''}`}>
+                <span className="output-card__icon">{f.icon}</span>
+                <div>
+                  <strong>{f.label}{f.soon && <span className="chip-soon" style={{marginLeft:'0.5rem'}}>Bald</span>}</strong>
+                  <p>{f.text}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* DPP */}
+      <section id="dpp" className="section section--gradient">
+        <div className="container">
+          <div className="section__header section__header--light">
+            <div className="pill pill--teal">DPP-Enabler</div>
+            <h2>Die Datengrundlage für den Digitalen Produktpass</h2>
+            <p className="section__lead">
+              Der EU Digital Product Passport (ESPR) verlangt ein vollständiges, maschinenlesbares und nachweisbares Attributset — genau die Disziplin, die ProductSphere beherrscht.
+            </p>
+          </div>
+          <div className="dpp-grid">
+            {DPP_FEATURES.map((f) => (
+              <div key={f.title} className="dpp-card">
+                <span className="dpp-card__icon">{f.icon}</span>
+                <h3>{f.title}</h3>
+                <p>{f.text}</p>
+              </div>
+            ))}
+          </div>
+          <div className="dpp-note">
+            <strong>Ehrlicher Scope: Enabler, nicht Pass-Register</strong>
+            <p>ProductSphere bereitet die DPP-Daten vor und sichert ihre Qualität — ersetzt jedoch keine LCA/CO₂-Primärerhebung, keine Serialisierung auf Stück-/Chargenebene und kein Pass-Hosting mit Registry. Sie speist diese Systeme — transparent inklusive der Felder, die extern beschafft werden müssen.</p>
+          </div>
+        </div>
+      </section>
+
+      {/* VERSIONIERUNG */}
+      <section id="versioning" className="section section--dark">
+        <div className="container versioning-layout">
+          <div className="versioning-text">
+            <div className="pill pill--blue">Versionierung & Replay</div>
+            <h2>Jeder Pipeline-Durchlauf ist eine eingefrorene, wieder-abspielbare Version</h2>
+            <p>In regulierten Branchen zählt nicht nur das Ergebnis, sondern der Nachweis, wie und auf welcher Grundlage es entstand. ProductSphere liefert diesen Nachweis für jeden einzelnen Durchlauf — vollständig, eingefroren und jederzeit exakt wieder abspielbar.</p>
+          </div>
+          <div className="versioning-cards">
+            {[
+              { icon: '📌', title: 'Version pro Durchlauf', text: 'Jeder vollständige Pass wird als unveränderliche Version v1, v2 … gespeichert. Die neueste ist aktiv, ältere bleiben eingefroren.' },
+              { icon: '▶️', title: 'Exakter Replay', text: 'Eine Version anklicken zeigt den ganzen Lauf wieder so, wie er live ablief — Agenten-Kommunikation, Dokumente, Quellen-Snapshot.' },
+              { icon: '🏷️', title: 'Standard-Versionen', text: 'Jede Klassifikation trägt das Versions-Label des Standards. Klar dokumentiert, gegen welchen Stand klassifiziert wurde.' },
+            ].map((v) => (
+              <div key={v.title} className="versioning-card">
+                <span>{v.icon}</span>
+                <div>
+                  <strong>{v.title}</strong>
+                  <p>{v.text}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* VORHER / NACHHER */}
+      <section id="impact" className="section section--light">
+        <div className="container">
+          <div className="section__header">
+            <div className="pill pill--red">Wirkung</div>
+            <h2>Was sich im Prozess ändert</h2>
+          </div>
+          <div className="before-after">
+            <div className="ba-header">
+              <span className="ba-label ba-label--before">Vorher</span>
+              <span className="ba-label ba-label--after">Mit ProductSphere</span>
+            </div>
+            {BEFORE_AFTER.map((row) => (
+              <div key={row.before} className="ba-row">
+                <div className="ba-cell ba-cell--before">
+                  <span className="ba-icon">✗</span>{row.before}
+                </div>
+                <div className="ba-cell ba-cell--after">
+                  <span className="ba-icon">✓</span>{row.after}
+                </div>
+              </div>
+            ))}
+          </div>
+          <div className="impact-stats">
+            {IMPACT_STATS.map((s) => (
+              <div key={s.label} className="impact-stat">
+                <span className="impact-stat__value">{s.value}</span>
+                <span className="impact-stat__label">{s.label}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ZUGÄNGE */}
+      <section id="access" className="section section--gradient">
+        <div className="container">
+          <div className="section__header section__header--light">
+            <div className="pill pill--teal">Zugänge</div>
+            <h2>Desktop-Cockpit und Kamera-App — ein Datenbestand</h2>
+          </div>
+          <div className="access-grid">
+            {ACCESS.map((a) => (
+              <div key={a.title} className="access-card">
+                <div className="access-card__top">
+                  <span className="access-card__icon">{a.icon}</span>
+                  <span className={`tag tag--${a.tag === 'Live' ? 'green' : 'amber'}`}>{a.tag}</span>
+                </div>
+                <h3>{a.title}</h3>
+                <p className="access-card__role">{a.role}</p>
+                <p>{a.text}</p>
+              </div>
+            ))}
+            <div className="access-card access-card--note">
+              <span className="access-card__icon">🔗</span>
+              <h3>Ein Backend für beide</h3>
+              <p>Beide Oberflächen teilen sich Pipeline und Datenbestand: Was am Handy fotografiert wird, erscheint sofort in der Studio-History — und umgekehrt.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* SPHERE SERVICES / PORTFOLIO */}
       <section id="portfolio" className="section section--dark">
         <div className="container">
           <div className="section__header section__header--light">
-            <div className="pill pill--blue">Portfolio</div>
+            <div className="pill pill--blue">Sphere Services</div>
             <h2>So können Kunden ProductSphere nutzen</h2>
           </div>
           <div className="portfolio-grid">
@@ -363,55 +585,12 @@ export default function App() {
         </div>
       </section>
 
-      {/* PROCESS */}
-      <section id="process" className="section section--light">
-        <div className="container">
-          <div className="section__header">
-            <div className="pill pill--violet">Prozess</div>
-            <h2>So funktioniert es</h2>
-          </div>
-          <div className="process-steps">
-            {PROCESS_STEPS.map((s, i) => (
-              <div key={s.num} className="process-step">
-                <div className="process-step__left">
-                  <div className="process-step__num">{s.num}</div>
-                  {i < PROCESS_STEPS.length - 1 && <div className="process-step__line" />}
-                </div>
-                <div className="process-step__body">
-                  <h3>{s.title}</h3>
-                  <p>{s.text}</p>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* BENEFITS */}
-      <section id="benefits" className="section section--gradient">
-        <div className="container">
-          <div className="section__header section__header--light">
-            <div className="pill pill--teal">Nutzen</div>
-            <h2>Vom Engpass zur skalierbaren Datenqualität</h2>
-          </div>
-          <div className="benefits-grid">
-            {BENEFITS.map((b) => (
-              <div key={b} className="benefit-item">
-                <span className="benefit-arrow">→</span>
-                {b}
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* CTA / CONTACT */}
+      {/* CTA */}
       <section id="contact" className="section section--cta">
         <div className="container cta-content">
           <h2>Bereit für die nächste Generation von Produktdaten?</h2>
           <p>
-            Erfahren Sie, wie ProductSphere Ihre Produktdaten klassifiziert, validiert und für GDSN, DPP und
-            zukünftige Standards vorbereitet.
+            Erfahren Sie, wie ProductSphere Ihre Produktdaten klassifiziert, anreichert, validiert und für GDSN, DPP und zukünftige Standards vorbereitet.
           </p>
           <div className="cta-buttons">
             <a className="btn btn--primary btn--lg" href={APP_URL} target="_blank" rel="noopener noreferrer">Plattform starten</a>
@@ -425,7 +604,7 @@ export default function App() {
       <footer className="footer">
         <div className="container footer__inner">
           <img src={logo} alt="ProductSphere" className="nav__logo-img" />
-          <p>© 2025 ProductSphere. The Product Intelligence Platform.</p>
+          <p>© 2025 ProductSphere. The Product Intelligence Suite.</p>
         </div>
       </footer>
     </div>
