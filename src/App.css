@@ -418,6 +418,8 @@ ul { list-style: none; }
   font-size: 0.7rem;
   font-weight: 700;
   letter-spacing: 0.05em;
+  white-space: nowrap;
+  flex-shrink: 0;
 }
 .tag--green { background: rgba(5,150,105,0.2); color: #34d399; }
 .tag--amber { background: rgba(217,119,6,0.2); color: #fbbf24; }
