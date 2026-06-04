@@ -92,6 +92,14 @@ const STANDARDS = [
     process: 'Anbindung ohne Modelltraining — Katalog einlesen, einbetten, produktiv.',
     tag: 'Bald',
   },
+  {
+    name: 'Ihr Standard',
+    color: '#00CFFF',
+    text: 'Verbands-Taxonomie, Hauskatalog, interne Warengruppen oder branchenspezifische Klassifikation — wir implementieren jeden Katalog als vollwertigen Standard in der Suite.',
+    process: 'Katalog einreichen, Knoten einbetten, produktiv. Kein Training, keine Wartezeit — Ihr Standard verhält sich wie ein nativer.',
+    tag: 'Auf Anfrage',
+    custom: true,
+  },
 ]
 
 const PIPELINE_STEPS = [
@@ -358,13 +366,18 @@ export default function App() {
           </div>
           <div className="standards-grid">
             {STANDARDS.map((s) => (
-              <div key={s.name} className="standard-card" style={{ '--accent': s.color }}>
+              <div key={s.name} className={`standard-card${s.custom ? ' standard-card--custom' : ''}`} style={{ '--accent': s.color }}>
                 <div className="standard-card__top">
                   <span className="standard-card__name">{s.name}</span>
-                  <span className={`tag tag--${s.tag === 'Live' ? 'green' : 'amber'}`}>{s.tag}</span>
+                  <span className={`tag tag--${s.tag === 'Live' ? 'green' : s.tag === 'Auf Anfrage' ? 'cyan' : 'amber'}`}>{s.tag}</span>
                 </div>
                 <p>{s.text}</p>
                 <p className="standard-card__process">{s.process}</p>
+                {s.custom && (
+                  <a className="btn btn--primary btn--sm standard-card__cta" href="mailto:info@productsphere.io">
+                    Standard anfragen
+                  </a>
+                )}
               </div>
             ))}
           </div>

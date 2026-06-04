@@ -421,6 +421,7 @@ ul { list-style: none; }
 }
 .tag--green { background: rgba(5,150,105,0.2); color: #34d399; }
 .tag--amber { background: rgba(217,119,6,0.2); color: #fbbf24; }
+.tag--cyan { background: rgba(0,207,255,0.15); color: #00CFFF; border: 1px solid rgba(0,207,255,0.3); }
 
 /* ===== OUTPUT FORMATS ===== */
 .outputs-block {
@@ -466,6 +467,13 @@ ul { list-style: none; }
 
 /* ===== STANDARD CARD PROCESS ===== */
 .standard-card__process { color: rgba(255,255,255,0.4); font-size: 0.78rem; margin-top: 0.5rem; font-style: italic; }
+.standard-card--custom {
+  border-style: dashed;
+  border-color: rgba(0,207,255,0.3);
+  background: rgba(0,207,255,0.04);
+}
+.standard-card--custom:hover { border-style: solid; border-color: #00CFFF; }
+.standard-card__cta { margin-top: 1.25rem; align-self: flex-start; }
 .standards-why {
   margin-top: 2.5rem;
   background: rgba(255,255,255,0.04);
