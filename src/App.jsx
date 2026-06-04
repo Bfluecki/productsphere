@@ -1,5 +1,14 @@
 import { useState, useEffect } from 'react'
 import logo from './assets/logo.png'
+import {
+  SlidersHorizontal, FlaskConical, PenLine,
+  Target, Scale, ShieldCheck,
+  Bot, MessageSquare, Gauge, SearchCode,
+  Globe, Package, Wrench, FileText, Braces, Table2, Zap,
+  Fingerprint, LayoutTemplate, Link2, History,
+  Monitor, Smartphone, Share2,
+  MonitorCheck, Plug2, ClipboardCheck
+} from 'lucide-react'
 import './App.css'
 
 const APP_URL = 'https://classifier-studio-production.up.railway.app/'
@@ -21,19 +30,19 @@ const STATS = [
 
 const STUDIOS = [
   {
-    icon: '🎛️',
+    Icon: SlidersHorizontal,
     name: 'Product Studio',
     role: 'Das Cockpit & der Orchestrator',
     text: 'Produkt anlegen, Quellen verwalten, den Produkt-Agenten fahren lassen und die ganze Pipeline überwachen. Versionsliste mit Replay, offene Rückfragen, Lebenslauf.',
   },
   {
-    icon: '🔬',
+    Icon: FlaskConical,
     name: 'Classifier Studio',
     role: 'Klassifikation im Detail',
     text: 'Standards & Versionen wählen, die gläserne Tool-Trace live verfolgen, Top-3-Kandidaten prüfen und jeden Lauf aus der History exakt wieder abspielen.',
   },
   {
-    icon: '✏️',
+    Icon: PenLine,
     name: 'Refinement Studio',
     role: 'Validierung & Anreicherung',
     text: 'Gegen das aufgelöste Zielprofil validieren und aus den Quellen anreichern — mit Provenienz je Feld (geprüft/befüllt/abgeleitet/fehlend) und Validierungs-Report.',
@@ -109,28 +118,28 @@ const PIPELINE_STEPS = [
 ]
 
 const AGENT_FEATURES = [
-  { icon: '🤖', title: 'Orchestriert die Sub-Agenten', text: 'Treibt Klassifikation, Refinement und Integration headless bis zum Ziel — hält nur an, wo eine menschliche Entscheidung nötig ist.' },
-  { icon: '💬', title: 'Stellt die richtigen Fragen', text: 'Alle offenen Entscheidungen erscheinen zentral als Rückfrage: erst der Weg (akzeptieren / Alternative / manuell), dann die konkrete Aktion.' },
-  { icon: '⚙️', title: 'Automatisierungsgrad wählbar', text: 'Off (manuell), Assisted (autonom bis zum HITL-Gate) oder Auto. Unsichere Fälle landen in der Inbox statt still falsch zu laufen.' },
-  { icon: '🔍', title: 'Treibt die Daten-Beschaffung', text: 'Fehlt etwas, beschafft der Agent es per Websuche oder fordert Quellen an, nimmt die Ergänzung auf und läuft automatisch weiter.' },
+  { Icon: Bot, title: 'Orchestriert die Sub-Agenten', text: 'Treibt Klassifikation, Refinement und Integration headless bis zum Ziel — hält nur an, wo eine menschliche Entscheidung nötig ist.' },
+  { Icon: MessageSquare, title: 'Stellt die richtigen Fragen', text: 'Alle offenen Entscheidungen erscheinen zentral als Rückfrage: erst der Weg (akzeptieren / Alternative / manuell), dann die konkrete Aktion.' },
+  { Icon: Gauge, title: 'Automatisierungsgrad wählbar', text: 'Off (manuell), Assisted (autonom bis zum HITL-Gate) oder Auto. Unsichere Fälle landen in der Inbox statt still falsch zu laufen.' },
+  { Icon: SearchCode, title: 'Treibt die Daten-Beschaffung', text: 'Fehlt etwas, beschafft der Agent es per Websuche oder fordert Quellen an, nimmt die Ergänzung auf und läuft automatisch weiter.' },
 ]
 
 const OUTPUT_FORMATS = [
-  { label: 'GDSN CH (JSON-LD)', icon: '🌐', text: 'GS1-Datenpool-Profil, Zielmarkt CH-756 — für den Stammdatenaustausch.' },
-  { label: 'BMEcat 2005 (XML)', icon: '🗂️', text: 'B2B-Katalog mit Klassifikations-Referenz für technischen Grosshandel.' },
-  { label: 'UNSPSC · Peppol/UBL', icon: '📦', text: 'Klassifizierter Beleg-Baustein für elektronische Beschaffung und Rechnungsstellung.' },
-  { label: 'SAP S/4HANA Materialstamm', icon: '🔧', text: 'Materialstamm-konforme Ausgabe für den direkten ERP-Import.', soon: true },
-  { label: 'Stammblatt (PDF)', icon: '📄', text: 'Druckfertiges Klassifizierungs-Stammblatt mit Produktbildern und Texten.' },
-  { label: 'Klassifikation (JSON)', icon: '{}', text: 'Top-Treffer plus begründete Kandidatenliste — maschinenverarbeitbar.' },
-  { label: 'ETIM xChange (JSON)', icon: '⚡', text: 'Technisches Austauschformat für ETIM-basierte B2B-Kataloge.' },
-  { label: 'Kandidaten (CSV)', icon: '📊', text: 'Tabellarischer Export für Tabellenkalkulation und Sichtprüfung.' },
+  { label: 'GDSN CH (JSON-LD)', Icon: Globe, text: 'GS1-Datenpool-Profil, Zielmarkt CH-756 — für den Stammdatenaustausch.' },
+  { label: 'BMEcat 2005 (XML)', Icon: Package, text: 'B2B-Katalog mit Klassifikations-Referenz für technischen Grosshandel.' },
+  { label: 'UNSPSC · Peppol/UBL', Icon: Link2, text: 'Klassifizierter Beleg-Baustein für elektronische Beschaffung und Rechnungsstellung.' },
+  { label: 'SAP S/4HANA Materialstamm', Icon: Wrench, text: 'Materialstamm-konforme Ausgabe für den direkten ERP-Import.', soon: true },
+  { label: 'Stammblatt (PDF)', Icon: FileText, text: 'Druckfertiges Klassifizierungs-Stammblatt mit Produktbildern und Texten.' },
+  { label: 'Klassifikation (JSON)', Icon: Braces, text: 'Top-Treffer plus begründete Kandidatenliste — maschinenverarbeitbar.' },
+  { label: 'ETIM xChange (JSON)', Icon: Zap, text: 'Technisches Austauschformat für ETIM-basierte B2B-Kataloge.' },
+  { label: 'Kandidaten (CSV)', Icon: Table2, text: 'Tabellarischer Export für Tabellenkalkulation und Sichtprüfung.' },
 ]
 
 const DPP_FEATURES = [
-  { icon: '🆔', title: 'Identität & Klassifikation', text: 'GTIN/SKU plus GPC/UNSPSC/ETIM — die eindeutige Produktidentität und Kategorie, auf der jeder Pass aufsetzt.' },
-  { icon: '📋', title: 'Datenmodell als Zielprofil', text: 'Der Zielprofil-Mechanismus bildet ein DPP-Datenmodell je Produktgruppe ab — dieselbe Mechanik wie beim GS1 GDM.' },
-  { icon: '🔗', title: 'Herkunftsnachweis je Feld', text: 'Jeder Wert trägt Status, Quellverweis und Konfidenz — die Nachweisbarkeit, die ein Produktpass regulatorisch verlangt.' },
-  { icon: '🕓', title: 'Versioniert & auditierbar', text: 'Jeder Durchlauf ist eine eingefrorene, wieder-abspielbare Version — Grundlage für die Lebenszyklus-Nachvollziehbarkeit.' },
+  { Icon: Fingerprint, title: 'Identität & Klassifikation', text: 'GTIN/SKU plus GPC/UNSPSC/ETIM — die eindeutige Produktidentität und Kategorie, auf der jeder Pass aufsetzt.' },
+  { Icon: LayoutTemplate, title: 'Datenmodell als Zielprofil', text: 'Der Zielprofil-Mechanismus bildet ein DPP-Datenmodell je Produktgruppe ab — dieselbe Mechanik wie beim GS1 GDM.' },
+  { Icon: Link2, title: 'Herkunftsnachweis je Feld', text: 'Jeder Wert trägt Status, Quellverweis und Konfidenz — die Nachweisbarkeit, die ein Produktpass regulatorisch verlangt.' },
+  { Icon: History, title: 'Versioniert & auditierbar', text: 'Jeder Durchlauf ist eine eingefrorene, wieder-abspielbare Version — Grundlage für die Lebenszyklus-Nachvollziehbarkeit.' },
 ]
 
 const BEFORE_AFTER = [
@@ -149,14 +158,14 @@ const IMPACT_STATS = [
 
 const ACCESS = [
   {
-    icon: '🖥️',
+    Icon: Monitor,
     title: 'Studio (Desktop)',
     role: 'Das Kontrollzentrum',
     text: 'Drei-Spalten-Layout: Input · Agentenkommunikation · Klassifikation/Output. Versionierte History mit Replay, alle Zielformate und die Test Bench mit Analytics & LLM-Log.',
     tag: 'Live',
   },
   {
-    icon: '📱',
+    Icon: Smartphone,
     title: 'Mobile (PWA)',
     role: 'Kamera-first, für unterwegs & Messe',
     text: 'Produkt oder Etikett fotografieren → sofort klassifizieren. Einspaltig, installierbar (Home-Screen, Vollbild). Vollständigkeitsprüfung mit Foto-Nachfrage bis das Profil komplett ist.',
@@ -167,7 +176,7 @@ const ACCESS = [
 const PORTFOLIO = [
   {
     id: 'portfolio-webportal',
-    icon: '🖥️',
+    Icon: MonitorCheck,
     title: 'Webportal',
     subtitle: 'Für Stammdaten-Teams und Produktmanager',
     text: 'Das browserbasierte Studio ermöglicht Fachanwendern, einzelne Produkte oder ganze Sortimente direkt im Browser zu klassifizieren, anreichern und exportieren — ohne technisches Setup.',
@@ -181,7 +190,7 @@ const PORTFOLIO = [
   },
   {
     id: 'portfolio-api',
-    icon: '⚙️',
+    Icon: Plug2,
     title: 'API & Integration',
     subtitle: 'Für Entwickler und Systemintegratoren',
     text: 'Die ProductSphere API lässt sich nahtlos in bestehende ERP-, PIM- oder E-Commerce-Systeme einbinden. Klassifikation und Validierung werden direkt im Produktanlageprozess ausgelöst — vollautomatisch.',
@@ -195,7 +204,7 @@ const PORTFOLIO = [
   },
   {
     id: 'portfolio-validation',
-    icon: '📊',
+    Icon: ClipboardCheck,
     title: 'Validation as a Service',
     subtitle: 'Für einmalige Datenqualitäts-Projekte',
     text: 'Bestehende Produktdatenbestände werden einmalig analysiert, auf Klassifikationsqualität geprüft und mit einem Management-Report inklusive konkreter Handlungsempfehlungen geliefert.',
@@ -296,17 +305,17 @@ export default function App() {
           </div>
           <div className="idea-grid">
             <div className="idea-card">
-              <span className="idea-card__icon">🎯</span>
+              <Target className="idea-card__icon" size={32} strokeWidth={1.5} />
               <h3>Präzise statt Stichwort</h3>
               <p>Semantisches Verständnis erkennt „Medikamentenbecher 30 ml graduiert" auch dann, wenn der Katalog von „Dosierhilfen" spricht.</p>
             </div>
             <div className="idea-card">
-              <span className="idea-card__icon">⚖️</span>
+              <Scale className="idea-card__icon" size={32} strokeWidth={1.5} />
               <h3>Mit Augenmass</h3>
               <p>Ein vorgeschalteter Richter prüft pro Standard, ob er überhaupt zutrifft — ein Sportschuh wird nicht in einen Medizinkatalog gepresst.</p>
             </div>
             <div className="idea-card">
-              <span className="idea-card__icon">🔎</span>
+              <ShieldCheck className="idea-card__icon" size={32} strokeWidth={1.5} />
               <h3>Auditierbar</h3>
               <p>Jeder Pipeline-Durchlauf wird mit Quellen, Kommunikation und Ergebnis als Version gespeichert und lässt sich exakt wieder ansehen.</p>
             </div>
@@ -327,7 +336,7 @@ export default function App() {
           <div className="studios-grid">
             {STUDIOS.map((s) => (
               <div key={s.name} className="studio-card">
-                <span className="studio-card__icon">{s.icon}</span>
+                <s.Icon className="studio-card__icon" size={32} strokeWidth={1.5} />
                 <h3>{s.name}</h3>
                 <p className="studio-card__role">{s.role}</p>
                 <p>{s.text}</p>
@@ -410,7 +419,7 @@ export default function App() {
           <div className="cards-grid">
             {AGENT_FEATURES.map((f) => (
               <div key={f.title} className="feature-card feature-card--dark">
-                <span className="feature-card__icon">{f.icon}</span>
+                <f.Icon className="feature-card__icon" size={30} strokeWidth={1.5} />
                 <h3>{f.title}</h3>
                 <p>{f.text}</p>
               </div>
@@ -432,7 +441,7 @@ export default function App() {
           <div className="output-cards">
             {OUTPUT_FORMATS.map((f) => (
               <div key={f.label} className={`output-card${f.soon ? ' output-card--soon' : ''}`}>
-                <span className="output-card__icon">{f.icon}</span>
+                <f.Icon className="output-card__icon" size={22} strokeWidth={1.5} />
                 <div>
                   <strong>{f.label}{f.soon && <span className="chip-soon" style={{marginLeft:'0.5rem'}}>Bald</span>}</strong>
                   <p>{f.text}</p>
@@ -456,7 +465,7 @@ export default function App() {
           <div className="dpp-grid">
             {DPP_FEATURES.map((f) => (
               <div key={f.title} className="dpp-card">
-                <span className="dpp-card__icon">{f.icon}</span>
+                <f.Icon className="dpp-card__icon" size={28} strokeWidth={1.5} />
                 <h3>{f.title}</h3>
                 <p>{f.text}</p>
               </div>
@@ -540,7 +549,7 @@ export default function App() {
             {ACCESS.map((a) => (
               <div key={a.title} className="access-card">
                 <div className="access-card__top">
-                  <span className="access-card__icon">{a.icon}</span>
+                  <a.Icon className="access-card__icon" size={28} strokeWidth={1.5} />
                   <span className={`tag tag--${a.tag === 'Live' ? 'green' : 'amber'}`}>{a.tag}</span>
                 </div>
                 <h3>{a.title}</h3>
@@ -549,7 +558,7 @@ export default function App() {
               </div>
             ))}
             <div className="access-card access-card--note">
-              <span className="access-card__icon">🔗</span>
+              <Share2 size={28} strokeWidth={1.5} style={{color:'#00CFFF', marginBottom:'1rem'}} />
               <h3>Ein Backend für beide</h3>
               <p>Beide Oberflächen teilen sich Pipeline und Datenbestand: Was am Handy fotografiert wird, erscheint sofort in der Studio-History — und umgekehrt.</p>
             </div>
@@ -567,7 +576,7 @@ export default function App() {
           <div className="portfolio-grid">
             {PORTFOLIO.map((p) => (
               <div key={p.title} id={p.id} className="portfolio-card">
-                <span className="portfolio-card__icon">{p.icon}</span>
+                <p.Icon className="portfolio-card__icon" size={32} strokeWidth={1.5} />
                 <h3>{p.title}</h3>
                 <p className="portfolio-card__subtitle">{p.subtitle}</p>
                 <p className="portfolio-card__text">{p.text}</p>
