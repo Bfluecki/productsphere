@@ -421,7 +421,7 @@ ul { list-style: none; }
 }
 .tag--green { background: rgba(5,150,105,0.2); color: #34d399; }
 .tag--amber { background: rgba(217,119,6,0.2); color: #fbbf24; }
-.tag--cyan { background: rgba(0,207,255,0.15); color: #00CFFF; border: 1px solid rgba(0,207,255,0.3); }
+.tag--cyan { background: rgba(0,207,255,0.15); color: #00CFFF; }
 
 /* ===== OUTPUT FORMATS ===== */
 .outputs-block {
