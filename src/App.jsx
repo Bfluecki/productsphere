@@ -66,7 +66,7 @@ const STANDARDS = [
     name: 'ETIM',
     color: '#00CFFF',
     text: 'Technische Merkmale — Internationaler Standard für technische Produkte (Elektro, Bau, Sanitär) mit Klassen und Merkmalen.',
-    process: 'Treibt B2B-Kataloge (BMEcat/ETIM xChange) und technischen Großhandel — merkmalsbasierte Suche.',
+    process: 'Treibt B2B-Kataloge (BMEcat/ETIM xChange) und technischen Grosshandel — merkmalsbasierte Suche.',
     tag: 'Live',
   },
   {
@@ -302,7 +302,7 @@ export default function App() {
             </div>
             <div className="idea-card">
               <span className="idea-card__icon">⚖️</span>
-              <h3>Mit Augenmaß</h3>
+              <h3>Mit Augenmass</h3>
               <p>Ein vorgeschalteter Richter prüft pro Standard, ob er überhaupt zutrifft — ein Sportschuh wird nicht in einen Medizinkatalog gepresst.</p>
             </div>
             <div className="idea-card">
