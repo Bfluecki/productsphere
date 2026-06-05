@@ -184,46 +184,37 @@ const ACCESS = [
 
 const PORTFOLIO = [
   {
-    id: 'portfolio-webportal',
+    id: 'portfolio-studio',
     Icon: MonitorCheck,
-    title: 'Webportal',
-    subtitle: 'Für Stammdaten-Teams und Produktmanager',
-    text: 'Das browserbasierte Studio ermöglicht Fachanwendern, einzelne Produkte oder ganze Sortimente direkt im Browser zu klassifizieren, anreichern und exportieren — ohne technisches Setup.',
-    benefits: [
-      'Sofort einsatzbereit ohne Installation',
-      'Klassifikation per Texteingabe, PDF oder URL',
-      'Ergebnisse mit Konfidenz und Begründung',
-      'Export als JSON, CSV, PDF oder GDSN',
-      'Ideal für Pilotprojekte und laufenden Betrieb',
-    ],
+    title: 'ProductSphere Studio',
+    subtitle: 'Die Product Intelligence Platform für Fachanwender',
+    target: 'Für Stammdatenmanager, Produktmanager und Data Stewards, die Produktdaten selbst verwalten und optimieren möchten.',
+    text: 'Das browserbasierte Studio ermöglicht die Klassifikation, Anreicherung und Validierung von Produkten direkt über eine moderne Benutzeroberfläche — ohne Installation und ohne technische Vorkenntnisse.',
+    idealFor: ['Stammdaten-Teams', 'Produktmanagement', 'Category Management', 'GS1 Data Owner', 'PIM-Verantwortliche'],
+    scope: ['Product Studio, Classifier Studio und Refinement Studio', 'Klassifikation gegen mehrere Standards parallel', 'Validierung und Datenanreicherung', 'DPP Readiness', 'Versionierung und Replay', 'Mehrsprachige Benutzeroberfläche', 'Export in verschiedene Zielformate'],
+    nutzen: 'Weniger manuelle Arbeit, höhere Datenqualität und vollständig nachvollziehbare Entscheidungen.',
   },
   {
     id: 'portfolio-api',
     Icon: Plug2,
-    title: 'API & Integration',
-    subtitle: 'Für Entwickler und Systemintegratoren',
-    text: 'Die ProductSphere API lässt sich nahtlos in bestehende ERP-, PIM- oder E-Commerce-Systeme einbinden. Klassifikation und Validierung werden direkt im Produktanlageprozess ausgelöst — vollautomatisch.',
-    benefits: [
-      'REST API mit strukturierter JSON-Antwort',
-      'Batch-Verarbeitung grosser Produktmengen',
-      'Kompatibel mit SAP, Salesforce, Akeneo u.v.m.',
-      'Webhook-Support für ereignisgesteuerte Prozesse',
-      'SLA-fähig und skalierbar',
-    ],
+    title: 'ProductSphere API',
+    subtitle: 'Product Intelligence direkt in Ihren Prozessen',
+    target: 'Für Unternehmen, die ProductSphere nahtlos in bestehende ERP-, PIM-, E-Commerce- oder Stammdatensysteme integrieren möchten.',
+    text: 'Die API ermöglicht die vollautomatische Verarbeitung grosser Produktmengen — von der Klassifikation bis zum lieferfertigen Datensatz.',
+    idealFor: ['ERP- und PIM-Systeme', 'SAP-Landschaften', 'E-Commerce-Plattformen', 'Marktplätze', 'Systemintegratoren'],
+    scope: ['REST API', 'Batch-Verarbeitung grosser Datenmengen', 'Webhook-Unterstützung', 'SAP S/4HANA Integration', 'GDSN-Integration', 'BMEcat und ETIM xChange', 'Peppol/UBL', 'DPP-fähige Datenmodelle'],
+    nutzen: 'Automatisierte Produktdatenprozesse ohne Medienbruch — skalierbar vom einzelnen Produkt bis zu Millionen Datensätzen.',
   },
   {
-    id: 'portfolio-validation',
+    id: 'portfolio-services',
     Icon: ClipboardCheck,
-    title: 'Validation as a Service',
-    subtitle: 'Für einmalige Datenqualitäts-Projekte',
-    text: 'Bestehende Produktdatenbestände werden einmalig analysiert, auf Klassifikationsqualität geprüft und mit einem Management-Report inklusive konkreter Handlungsempfehlungen geliefert.',
-    benefits: [
-      'Prüfung ohne eigene IT-Infrastruktur',
-      'Data Quality Score pro Produkt und Kategorie',
-      'GDSN- und DPP-Readiness-Check inklusive',
-      'Korrekturvorschläge und Reklassifikation',
-      'Management Report für Entscheidungsträger',
-    ],
+    title: 'ProductSphere Services',
+    subtitle: 'Wir übernehmen die Datenarbeit für Sie',
+    target: 'Nicht jedes Unternehmen möchte eine Plattform betreiben oder Prozesse integrieren. Mit ProductSphere Services übernehmen wir Analyse, Klassifikation, Validierung und Datenaufbereitung als Managed Service.',
+    text: 'Schnelle Ergebnisse ohne eigene Infrastruktur, ohne Projektaufbau und ohne zusätzliche Ressourcen.',
+    idealFor: ['Einmalige Datenqualitätsprojekte', 'Grosse Reklassifikationen', 'GDSN-Projekte', 'DPP-Vorbereitung', 'Datenmigrationen'],
+    scope: ['Data Quality Assessment', 'Klassifikations- und Reklassifikationsprojekte', 'GDSN Readiness Check', 'DPP Readiness Assessment', 'Management Reports', 'Datenbereinigung und Datenanreicherung', 'Aufbau kundenspezifischer Standards und Zielprofile'],
+    nutzen: 'Schnelle Ergebnisse ohne eigene Infrastruktur, ohne Projektaufbau und ohne zusätzliche Ressourcen.',
   },
 ]
 
@@ -584,26 +575,51 @@ export default function App() {
       <section id="portfolio" className="section section--dark">
         <div className="container">
           <div className="section__header section__header--light">
-            <div className="pill pill--blue">Sphere Services</div>
-            <h2>So können Kunden ProductSphere nutzen</h2>
+            <div className="pill pill--blue">Drei Wege zu ProductSphere</div>
+            <h2>Nicht jedes Unternehmen startet am selben Punkt</h2>
+            <p className="section__lead">Deshalb bietet ProductSphere drei Wege, um Produktdaten zu klassifizieren, anzureichern, zu validieren und in lieferfertige Zielformate zu überführen.</p>
           </div>
           <div className="portfolio-grid">
             {PORTFOLIO.map((p) => (
               <div key={p.title} id={p.id} className="portfolio-card">
-                <p.Icon className="portfolio-card__icon" size={32} strokeWidth={1.5} />
-                <h3>{p.title}</h3>
-                <p className="portfolio-card__subtitle">{p.subtitle}</p>
+                <div className="portfolio-card__header">
+                  <p.Icon size={28} strokeWidth={1.5} style={{color:'#00CFFF'}} />
+                  <div>
+                    <h3>{p.title}</h3>
+                    <p className="portfolio-card__subtitle">{p.subtitle}</p>
+                  </div>
+                </div>
+                <p className="portfolio-card__target">{p.target}</p>
                 <p className="portfolio-card__text">{p.text}</p>
-                <ul className="portfolio-card__benefits">
-                  {p.benefits.map((b) => (
-                    <li key={b}>
-                      <span className="portfolio-benefit-icon">→</span>
-                      {b}
-                    </li>
-                  ))}
-                </ul>
+                <div className="portfolio-card__sections">
+                  <div className="portfolio-section">
+                    <span className="portfolio-section__label">Ideal für</span>
+                    <ul className="portfolio-list">
+                      {p.idealFor.map((i) => (
+                        <li key={i}><span className="portfolio-benefit-icon">→</span>{i}</li>
+                      ))}
+                    </ul>
+                  </div>
+                  <div className="portfolio-section">
+                    <span className="portfolio-section__label">Leistungsumfang</span>
+                    <ul className="portfolio-list">
+                      {p.scope.map((s) => (
+                        <li key={s}><span className="portfolio-benefit-icon">✓</span>{s}</li>
+                      ))}
+                    </ul>
+                  </div>
+                </div>
+                <div className="portfolio-card__nutzen">
+                  <span className="portfolio-nutzen-label">Nutzen</span>
+                  <p>{p.nutzen}</p>
+                </div>
               </div>
             ))}
+          </div>
+          <div className="portfolio-closing">
+            <p className="portfolio-closing__title">Ein Produkt. Viele Standards. Viele Zielsysteme. Ein Prozess.</p>
+            <p>Egal ob Sie ProductSphere selbst nutzen, in Ihre Systeme integrieren oder als Service beziehen: Die gleiche Product Intelligence Engine sorgt für konsistente, nachvollziehbare und lieferfertige Produktdaten.</p>
+            <p className="portfolio-closing__tagline">Studio · API · Services — Drei Wege zu ProductSphere.</p>
           </div>
         </div>
       </section>
