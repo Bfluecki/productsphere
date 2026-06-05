@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import logo from './assets/logo.png'
 import {
-  SlidersHorizontal, FlaskConical, PenLine,
+  LayoutDashboard, SlidersHorizontal, FlaskConical, PenLine,
   Target, Scale, ShieldCheck,
   Bot, MessageSquare, Gauge, SearchCode,
   Globe, Package, Wrench, FileText, Braces, Table2, Zap,
@@ -31,9 +31,16 @@ const STATS = [
 
 const STUDIOS = [
   {
+    Icon: LayoutDashboard,
+    name: 'Sphere Studio',
+    role: 'Die Portfolio-Kommandozentrale',
+    text: 'Der Sphere Manager überblickt alle Produkte, Firmen & Tätigkeiten, treibt die Pipelines autonom, entscheidet unsichere Fälle selbst und berät den Menschen. Facettierte Katalog-Suche, Aktivitäts-Feed, Diagramme & Bildübersicht.',
+    highlight: true,
+  },
+  {
     Icon: SlidersHorizontal,
     name: 'Product Studio',
-    role: 'Das Cockpit & der Orchestrator',
+    role: 'Cockpit pro Produkt',
     text: 'Produkt anlegen, Quellen verwalten, den Produkt-Agenten fahren lassen und die ganze Pipeline überwachen. Versionsliste mit Replay, offene Rückfragen, Lebenslauf.',
   },
   {
@@ -328,15 +335,15 @@ export default function App() {
       <section id="studios" className="section section--dark">
         <div className="container">
           <div className="section__header section__header--light">
-            <div className="pill pill--teal">Eine Suite, drei Studios</div>
+            <div className="pill pill--teal">Eine Suite, vier Studios</div>
             <h2>Jede Aufgabe hat ihren Ort — über einem gemeinsamen Datenbestand</h2>
             <p className="section__lead">
-              Das Produkt ist das Rückgrat. Drei spezialisierte Oberflächen teilen sich denselben Backend-Kern: Was im einen Studio passiert, ist im anderen sofort sichtbar.
+              Das Produkt ist das Rückgrat. Spezialisierte Oberflächen teilen sich denselben Backend-Kern: Was im einen Studio passiert, ist im anderen sofort sichtbar. Über allem steht das Sphere Studio als Portfolio-Kommandozentrale.
             </p>
           </div>
           <div className="studios-grid">
             {STUDIOS.map((s) => (
-              <div key={s.name} className="studio-card">
+              <div key={s.name} className={`studio-card${s.highlight ? ' studio-card--highlight' : ''}`}>
                 <s.Icon className="studio-card__icon" size={32} strokeWidth={1.5} />
                 <h3>{s.name}</h3>
                 <p className="studio-card__role">{s.role}</p>
