@@ -178,7 +178,7 @@ const ACCESS = [
     title: 'Mobile (PWA)',
     role: 'Kamera-first, für unterwegs & Messe',
     text: 'Produkt oder Etikett fotografieren → sofort klassifizieren. Einspaltig, installierbar (Home-Screen, Vollbild). Vollständigkeitsprüfung mit Foto-Nachfrage bis das Profil komplett ist.',
-    tag: 'Bald',
+    tag: 'Live',
   },
 ]
 
