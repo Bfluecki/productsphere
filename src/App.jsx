@@ -35,7 +35,6 @@ const STUDIOS = [
     name: 'Sphere Studio',
     role: 'Die Portfolio-Kommandozentrale',
     text: 'Der Sphere Manager überblickt alle Produkte, Firmen & Tätigkeiten, treibt die Pipelines autonom, entscheidet unsichere Fälle selbst und berät den Menschen. Facettierte Katalog-Suche, Aktivitäts-Feed, Diagramme & Bildübersicht.',
-    highlight: true,
   },
   {
     Icon: SlidersHorizontal,
@@ -343,7 +342,7 @@ export default function App() {
           </div>
           <div className="studios-grid">
             {STUDIOS.map((s) => (
-              <div key={s.name} className={`studio-card${s.highlight ? ' studio-card--highlight' : ''}`}>
+              <div key={s.name} className="studio-card">
                 <s.Icon className="studio-card__icon" size={32} strokeWidth={1.5} />
                 <h3>{s.name}</h3>
                 <p className="studio-card__role">{s.role}</p>
