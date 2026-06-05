@@ -6,6 +6,7 @@ import {
   Bot, MessageSquare, Gauge, SearchCode,
   Globe, Package, Wrench, FileText, Braces, Table2, Zap,
   Fingerprint, LayoutTemplate, Link2, History,
+  Pin, PlayCircle, Tag,
   Monitor, Smartphone, Share2,
   MonitorCheck, Plug2, ClipboardCheck
 } from 'lucide-react'
@@ -501,12 +502,12 @@ export default function App() {
           </div>
           <div className="versioning-cards">
             {[
-              { icon: '📌', title: 'Version pro Durchlauf', text: 'Jeder vollständige Pass wird als unveränderliche Version v1, v2 … gespeichert. Die neueste ist aktiv, ältere bleiben eingefroren.' },
-              { icon: '▶️', title: 'Exakter Replay', text: 'Eine Version anklicken zeigt den ganzen Lauf wieder so, wie er live ablief — Agenten-Kommunikation, Dokumente, Quellen-Snapshot.' },
-              { icon: '🏷️', title: 'Standard-Versionen', text: 'Jede Klassifikation trägt das Versions-Label des Standards. Klar dokumentiert, gegen welchen Stand klassifiziert wurde.' },
+              { Icon: Pin, title: 'Version pro Durchlauf', text: 'Jeder vollständige Pass wird als unveränderliche Version v1, v2 … gespeichert. Die neueste ist aktiv, ältere bleiben eingefroren.' },
+              { Icon: PlayCircle, title: 'Exakter Replay', text: 'Eine Version anklicken zeigt den ganzen Lauf wieder so, wie er live ablief — Agenten-Kommunikation, Dokumente, Quellen-Snapshot.' },
+              { Icon: Tag, title: 'Standard-Versionen', text: 'Jede Klassifikation trägt das Versions-Label des Standards. Klar dokumentiert, gegen welchen Stand klassifiziert wurde.' },
             ].map((v) => (
               <div key={v.title} className="versioning-card">
-                <span>{v.icon}</span>
+                <v.Icon size={24} strokeWidth={1.5} style={{color:"#00CFFF",flexShrink:0}} />
                 <div>
                   <strong>{v.title}</strong>
                   <p>{v.text}</p>
