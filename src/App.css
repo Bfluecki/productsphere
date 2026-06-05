@@ -868,6 +868,7 @@ ul { list-style: none; }
   overflow-y: auto;
   position: relative;
   animation: slideUp 0.25s ease;
+  text-align: left;
 }
 @keyframes slideUp { from { transform: translateY(24px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
 
@@ -923,6 +924,7 @@ ul { list-style: none; }
   grid-template-columns: 1fr 1fr;
   gap: 2rem;
   margin-bottom: 1.75rem;
+  text-align: left;
 }
 .modal__section-label {
   display: block;
@@ -932,12 +934,14 @@ ul { list-style: none; }
   letter-spacing: 0.08em;
   color: #475569;
   margin-bottom: 0.75rem;
+  text-align: left;
 }
 .modal__list {
   list-style: none;
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
+  text-align: left;
 }
 .modal__list li {
   display: flex;
@@ -946,6 +950,7 @@ ul { list-style: none; }
   color: #cbd5e1;
   font-size: 0.875rem;
   line-height: 1.45;
+  text-align: left;
 }
 .modal__list-icon { color: #00CFFF; flex-shrink: 0; font-size: 0.75rem; margin-top: 2px; }
 .modal__list-icon--check { color: #34d399; }
