@@ -221,6 +221,7 @@ const PORTFOLIO = [
 export default function App() {
   const [scrolled, setScrolled] = useState(false)
   const [menuOpen, setMenuOpen] = useState(false)
+  const [activeModal, setActiveModal] = useState(null)
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 40)
@@ -581,48 +582,67 @@ export default function App() {
           </div>
           <div className="portfolio-grid">
             {PORTFOLIO.map((p) => (
-              <div key={p.title} id={p.id} className="portfolio-card">
-                <div className="portfolio-card__header">
-                  <p.Icon size={28} strokeWidth={1.5} style={{color:'#00CFFF'}} />
-                  <div>
-                    <h3>{p.title}</h3>
-                    <p className="portfolio-card__subtitle">{p.subtitle}</p>
-                  </div>
+              <div key={p.title} id={p.id} className="portfolio-card" onClick={() => setActiveModal(p)}>
+                <div className="portfolio-card__icon-wrap">
+                  <p.Icon size={28} strokeWidth={1.5} />
                 </div>
-                <p className="portfolio-card__target">{p.target}</p>
+                <h3>{p.title}</h3>
+                <p className="portfolio-card__subtitle">{p.subtitle}</p>
                 <p className="portfolio-card__text">{p.text}</p>
-                <div className="portfolio-card__sections">
-                  <div className="portfolio-section">
-                    <span className="portfolio-section__label">Ideal für</span>
-                    <ul className="portfolio-list">
-                      {p.idealFor.map((i) => (
-                        <li key={i}><span className="portfolio-benefit-icon">→</span>{i}</li>
-                      ))}
-                    </ul>
-                  </div>
-                  <div className="portfolio-section">
-                    <span className="portfolio-section__label">Leistungsumfang</span>
-                    <ul className="portfolio-list">
-                      {p.scope.map((s) => (
-                        <li key={s}><span className="portfolio-benefit-icon">✓</span>{s}</li>
-                      ))}
-                    </ul>
-                  </div>
-                </div>
-                <div className="portfolio-card__nutzen">
-                  <span className="portfolio-nutzen-label">Nutzen</span>
-                  <p>{p.nutzen}</p>
-                </div>
+                <span className="portfolio-card__cta-link">Details ansehen →</span>
               </div>
             ))}
           </div>
           <div className="portfolio-closing">
             <p className="portfolio-closing__title">Ein Produkt. Viele Standards. Viele Zielsysteme. Ein Prozess.</p>
-            <p>Egal ob Sie ProductSphere selbst nutzen, in Ihre Systeme integrieren oder als Service beziehen: Die gleiche Product Intelligence Engine sorgt für konsistente, nachvollziehbare und lieferfertige Produktdaten.</p>
-            <p className="portfolio-closing__tagline">Studio · API · Services — Drei Wege zu ProductSphere.</p>
+            <p>Studio · API · Services — drei Wege zur gleichen Product Intelligence Engine.</p>
           </div>
         </div>
       </section>
+
+      {/* MODAL */}
+      {activeModal && (
+        <div className="modal-overlay" onClick={() => setActiveModal(null)}>
+          <div className="modal" onClick={e => e.stopPropagation()}>
+            <button className="modal__close" onClick={() => setActiveModal(null)} aria-label="Schliessen">✕</button>
+            <div className="modal__header">
+              <activeModal.Icon size={32} strokeWidth={1.5} className="modal__icon" />
+              <div>
+                <h2 className="modal__title">{activeModal.title}</h2>
+                <p className="modal__subtitle">{activeModal.subtitle}</p>
+              </div>
+            </div>
+            <p className="modal__target">{activeModal.target}</p>
+            <p className="modal__text">{activeModal.text}</p>
+            <div className="modal__sections">
+              <div className="modal__section">
+                <span className="modal__section-label">Ideal für</span>
+                <ul className="modal__list">
+                  {activeModal.idealFor.map(i => (
+                    <li key={i}><span className="modal__list-icon">→</span>{i}</li>
+                  ))}
+                </ul>
+              </div>
+              <div className="modal__section">
+                <span className="modal__section-label">Leistungsumfang</span>
+                <ul className="modal__list">
+                  {activeModal.scope.map(s => (
+                    <li key={s}><span className="modal__list-icon modal__list-icon--check">✓</span>{s}</li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+            <div className="modal__nutzen">
+              <span className="modal__nutzen-label">Nutzen</span>
+              <p>{activeModal.nutzen}</p>
+            </div>
+            <div className="modal__footer">
+              <a className="btn btn--primary" href="mailto:info@productsphere.io">Jetzt anfragen</a>
+              <button className="btn btn--outline" onClick={() => setActiveModal(null)}>Schliessen</button>
+            </div>
+          </div>
+        </div>
+      )}
 
       {/* CTA */}
       <section id="contact" className="section section--cta">
