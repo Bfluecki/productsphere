@@ -1000,6 +1000,70 @@ ul { list-style: none; }
 }
 .footer__inner p { color: #475569; font-size: 0.85rem; }
 
+/* ===== HERO CHIPS ===== */
+.hero__chips { display: flex; flex-wrap: wrap; gap: 0.5rem; justify-content: center; margin-bottom: 1.5rem; }
+.hero__chip {
+  padding: 0.3rem 0.85rem;
+  background: rgba(255,255,255,0.07);
+  border: 1px solid rgba(255,255,255,0.15);
+  border-radius: 100px;
+  color: #cbd5e1;
+  font-size: 0.78rem;
+  font-weight: 500;
+}
+
+/* ===== SPHERE MANAGER ===== */
+.sphere-manager-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px,1fr)); gap: 1.25rem; margin-bottom: 2rem; }
+.sphere-manager-card {
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: var(--radius);
+  padding: 1.5rem;
+  transition: border-color 0.2s, transform 0.2s;
+}
+.sphere-manager-card:hover { border-color: #CC00EE; transform: translateY(-3px); }
+.sphere-manager-card__icon { color: #CC00EE; display: block; margin-bottom: 0.75rem; }
+.sphere-manager-card h3 { color: #fff; margin-bottom: 0.4rem; font-size: 1rem; }
+.sphere-manager-card p { color: #94a3b8; font-size: 0.875rem; line-height: 1.6; }
+.sphere-manager-note {
+  background: rgba(204,0,238,0.06);
+  border: 1px solid rgba(204,0,238,0.2);
+  border-radius: var(--radius);
+  padding: 1.5rem 2rem;
+}
+.sphere-manager-note strong { color: #fff; display: block; margin-bottom: 0.5rem; }
+.sphere-manager-note p { color: #94a3b8; font-size: 0.9rem; }
+
+/* ===== QUALITY ===== */
+.quality-list { display: flex; flex-direction: column; gap: 0.75rem; max-width: 700px; margin: 0 auto; }
+.quality-item {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  background: #fff;
+  border: 1px solid #e2e8f0;
+  border-radius: 10px;
+  padding: 1rem 1.25rem;
+  font-weight: 500;
+  color: #334155;
+  box-shadow: var(--shadow);
+}
+.quality-icon { color: #059669; font-weight: 700; flex-shrink: 0; }
+
+/* ===== SECURITY ===== */
+.security-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px,1fr)); gap: 1.5rem; }
+.security-card {
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: var(--radius);
+  padding: 2rem;
+  transition: border-color 0.2s;
+}
+.security-card:hover { border-color: #00CFFF; }
+.security-card__icon { color: #00CFFF; display: block; margin-bottom: 1rem; }
+.security-card h3 { color: #fff; margin-bottom: 0.5rem; }
+.security-card p { color: #94a3b8; font-size: 0.9rem; }
+
 /* ===== RESPONSIVE ===== */
 @media (max-width: 768px) {
   .nav__links {

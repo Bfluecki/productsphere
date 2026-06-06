@@ -8,7 +8,8 @@ import {
   Fingerprint, LayoutTemplate, Link2, History,
   Pin, PlayCircle, Tag,
   Monitor, Smartphone, Share2,
-  MonitorCheck, Plug2, ClipboardCheck
+  MonitorCheck, Plug2, ClipboardCheck,
+  Users, GitBranch, MessageCircle, BarChart3, Cpu, Search
 } from 'lucide-react'
 import './App.css'
 
@@ -23,7 +24,7 @@ const NAV_LINKS = [
 ]
 
 const STATS = [
-  { value: '5', label: 'Standards parallel' },
+  { value: '6', label: 'Standards parallel' },
   { value: '4+', label: 'Zielformate' },
   { value: '0', label: 'Trainingsläufe nötig' },
   { value: '100%', label: 'nachvollziehbar' },
@@ -93,6 +94,13 @@ const STANDARDS = [
     tag: 'Live',
   },
   {
+    name: 'NOGA',
+    color: '#059669',
+    text: 'Wirtschaftszweige (CH, BFS) — Schweizer Systematik der Wirtschaftszweige (NOGA 2008, aus EU-NACE) — ordnet die wirtschaftliche Tätigkeit zu, nicht das Produkt selbst.',
+    process: 'Ermittelt die Herstell-/Handelsbranche zu einem Produkt — für Statistik, Unternehmensregister und behördliche Zuordnung.',
+    tag: 'Live',
+  },
+  {
     name: 'eClass',
     color: '#64748b',
     text: 'Internationaler Standard für Produktklassifikation und Stammdaten in Industrie und Handel.',
@@ -107,6 +115,28 @@ const STANDARDS = [
     tag: 'Anfrage',
     custom: true,
   },
+]
+
+const SPHERE_MANAGER_FEATURES = [
+  { Icon: LayoutDashboard, title: 'Portfolio-Katalog 2.0', text: 'Facettierte Suche über alle Subjekte — nach Status, Standard, Typ (Produkt/Firma), offenen Gates und Zielformat, mit Live-Zählern und Zusammenfassung je Zeile.' },
+  { Icon: GitBranch, title: 'Antrag → Anlage', text: 'Daten, Quellen und Bilder als „Antrag" einreichen; der Manager leitet an den Produkt-Agenten weiter, der das Subjekt anlegt und profiliert. Auch Firmen & Tätigkeiten (NOGA).' },
+  { Icon: Cpu, title: 'Autonomer Durchgriff', text: 'Stoppt der Produkt-Agent an einem unsicheren Klassifikations-Gate, übernimmt der Manager: er prüft, entscheidet selbst und treibt die Pipeline bis ready.' },
+  { Icon: MessageCircle, title: 'Berater & Transparenz', text: 'Auf Wunsch priorisierte Empfehlungen mit Begründung. Jede Aktion erklärt das Warum — gespiegelt in Chat und Aktivitäts-Feed.' },
+  { Icon: BarChart3, title: 'Visuelle Tools', text: 'Diagramme (Status-Donut, Standard-Balken, Ready-Fortschritt) und eine illustrative Bildübersicht der neuesten Anlagen — aus echten Portfolio-Zahlen.' },
+  { Icon: Search, title: 'Stärkeres Modell', text: 'Der Manager läuft für Entscheidungen auf GPT-5.4; die Subjekt-Agenten auf -mini. Mehr Urteilskraft, wo es zählt — die Routine bleibt günstig.' },
+]
+
+const QUALITY_FEATURES = [
+  'Recall-/Top-1-/Top-3-Funnel pro Standard und Eingabetyp',
+  'Konfidenz-Bänder zeigen, wo Sicherheit in Treffsicherheit umschlägt',
+  'A/B-Vergleich von Läufen: Verbesserungen und Regressionen auf einen Blick',
+  'LLM-Log mit den genauen Modell-Eingaben — volle Transparenz',
+]
+
+const SECURITY_FEATURES = [
+  { Icon: ShieldCheck, title: 'Zugang & Secrets', text: 'Passwortgeschützter Zugang; Schlüssel und Zugangsdaten nie im Klartext, nie im Browser.' },
+  { Icon: Globe, title: 'Web-Daten = Daten', text: 'Inhalte aus dem Web sind Daten, keine Befehle. SSRF-Schutz beim URL-Abruf (nur http/https, interne Adressen blockiert).' },
+  { Icon: History, title: 'Lückenlose Spur', text: 'Jede Quelle, jede Rückfrage, jede Entscheidung wird protokolliert und ist als Version reproduzierbar.' },
 ]
 
 const PIPELINE_STEPS = [
@@ -160,7 +190,7 @@ const DPP_FEATURES = [
 const BEFORE_AFTER = [
   { before: 'Fachkraft durchsucht manuell tausendseitige Kataloge', after: 'Vorschlag in Sekunden, Fachkraft prüft nur noch' },
   { before: 'Pflichtfelder je Zielformat von Hand zusammengesucht', after: 'Zielprofil löst sich auf, Felder werden belegt befüllt' },
-  { before: 'Jeder Standard & jedes Zielsystem ein eigener Prozess', after: '5 Standards und mehrere Zielformate in einem Lauf' },
+  { before: 'Jeder Standard & jedes Zielsystem ein eigener Prozess', after: 'Sechs Standards und mehrere Zielformate in einem Lauf' },
   { before: 'Entscheidungen bleiben undokumentiert im Kopf', after: 'Jeder Durchlauf versioniert und exakt wieder abspielbar' },
   { before: 'Neuer Katalog = Projekt über Monate', after: 'Neuer Katalog = einlesen, einbetten, fertig' },
 ]
@@ -271,6 +301,11 @@ export default function App() {
         <div className="hero__bg" />
         <div className="container hero__content">
           <div className="hero__badge">Product Intelligence Suite</div>
+          <div className="hero__chips">
+            {['Refinement Suite', 'Multi-Standard-Produktdaten', 'DPP-Enabler', 'Autonomer Sphere Manager'].map((chip) => (
+              <span key={chip} className="hero__chip">{chip}</span>
+            ))}
+          </div>
           <h1 className="hero__title">
             Product<span className="accent">Sphere</span>
           </h1>
@@ -353,12 +388,38 @@ export default function App() {
         </div>
       </section>
 
+      {/* SPHERE MANAGER */}
+      <section id="sphere-manager" className="section section--dark">
+        <div className="container">
+          <div className="section__header section__header--light">
+            <div className="pill pill--violet">Sphere Studio · Der Sphere Manager</div>
+            <h2>Eine Steuerungs-Ebene über allen Produkt-Agenten</h2>
+            <p className="section__lead">
+              Während der Produkt-Agent ein einzelnes Produkt führt, überblickt der Sphere Manager das ganze Portfolio. Er ist das Mensch-Interface der Plattform: nimmt Aufträge entgegen, plant die Arbeit, treibt die Pipelines über viele Subjekte hinweg.
+            </p>
+          </div>
+          <div className="sphere-manager-grid">
+            {SPHERE_MANAGER_FEATURES.map((f) => (
+              <div key={f.title} className="sphere-manager-card">
+                <f.Icon size={24} strokeWidth={1.5} className="sphere-manager-card__icon" />
+                <h3>{f.title}</h3>
+                <p>{f.text}</p>
+              </div>
+            ))}
+          </div>
+          <div className="sphere-manager-note">
+            <strong>Entscheidet wirklich — und bleibt ehrlich</strong>
+            <p>Der Manager erfindet nichts: unsichere Klassifikationen entscheidet er selbst, aber fehlende Pflichtdaten eskaliert er transparent statt sie zu erfinden. So entsteht maximaler Durchsatz mit voller Nachvollziehbarkeit — jeder Durchgriff und jede Eskalation steht im Chat und im Aktivitäts-Feed.</p>
+          </div>
+        </div>
+      </section>
+
       {/* STANDARDS */}
       <section id="standards" className="section section--gradient">
         <div className="container">
           <div className="section__header section__header--light">
             <div className="pill pill--teal">Standards</div>
-            <h2>Fünf Standards — parallel, in einem Lauf</h2>
+            <h2>Sechs Standards — parallel, in einem Lauf</h2>
             <p className="section__lead">
               Dasselbe Produkt wird je nach Prozess unterschiedlich eingeordnet. ProductSphere bedient alle relevanten Standards parallel — kein separates Tool, kein Medienbruch.
             </p>
@@ -550,6 +611,27 @@ export default function App() {
         </div>
       </section>
 
+      {/* QUALITÄT */}
+      <section id="quality" className="section section--light">
+        <div className="container">
+          <div className="section__header">
+            <div className="pill pill--violet">Qualität</div>
+            <h2>Qualität wird gemessen, nicht behauptet</h2>
+            <p className="section__lead">
+              Die integrierte Test Bench ist kein Beiwerk, sondern das Qualitätsversprechen: Kuratierte Benchmark-Fälle laufen kontrolliert durch dieselbe Pipeline wie die Produktion.
+            </p>
+          </div>
+          <ul className="quality-list">
+            {QUALITY_FEATURES.map((q) => (
+              <li key={q} className="quality-item">
+                <span className="quality-icon">✓</span>
+                {q}
+              </li>
+            ))}
+          </ul>
+        </div>
+      </section>
+
       {/* ZUGÄNGE */}
       <section id="access" className="section section--gradient">
         <div className="container">
@@ -574,6 +656,25 @@ export default function App() {
               <h3>Ein Backend für beide</h3>
               <p>Beide Oberflächen teilen sich Pipeline und Datenbestand: Was am Handy fotografiert wird, erscheint sofort in der Studio-History — und umgekehrt.</p>
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* SICHERHEIT */}
+      <section id="security" className="section section--dark">
+        <div className="container">
+          <div className="section__header section__header--light">
+            <div className="pill pill--blue">Sicherheit & Governance</div>
+            <h2>Geschützt, gekapselt, nachvollziehbar</h2>
+          </div>
+          <div className="security-grid">
+            {SECURITY_FEATURES.map((f) => (
+              <div key={f.title} className="security-card">
+                <f.Icon size={28} strokeWidth={1.5} className="security-card__icon" />
+                <h3>{f.title}</h3>
+                <p>{f.text}</p>
+              </div>
+            ))}
           </div>
         </div>
       </section>
